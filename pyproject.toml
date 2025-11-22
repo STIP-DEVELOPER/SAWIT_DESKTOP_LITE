@@ -1,0 +1,25 @@
+[project]
+name = "desktop-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyqt5>=5.15.11",
+    "ncnn>=1.0.20250916",
+    "numpy<2",
+    "opencv-python>=4.11.0.86",
+    "pyserial>=3.5",
+    "ultralytics>=8.3.229",
+]
+
+
+#for mac only
+[tool.uv]
+managed = true
+required-environments = ["sys_platform == 'darwin' and platform_machine == 'x86_64'"]
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.16.0",
+]

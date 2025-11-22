@@ -1,0 +1,32 @@
+[
+    {
+        "timestamp": "2025-11-22T08:30:55",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-22T08:37:58",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-22T08:38:04",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-22T09:43:34",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-22T09:44:19",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    }
+]

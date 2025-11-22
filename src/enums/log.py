@@ -1,0 +1,20 @@
+from enum import Enum
+
+
+class LogLevel(Enum):
+    INFO = "INFO"
+    WARNING = "WARNING"
+    ERROR = "ERROR"
+
+
+class LogSource(Enum):
+    MAIN_CONTROLLER = "MAIN_CONTROLLER"
+    SERIAL_CONTROLLER = "SERIAL_CONTROLLER"
+    CORE_CAMERA = "CORE_CAMERA"
+    CORE_INFERENCE = "CORE_INFERENCE"
+    CORE_VIDEO = "CORE_VIDEO"
+    UI_MAIN_WINDOW = "UI_MAIN_WINDOW"
+    UI_HOME = "UI_HOME"
+    UI_SETTINGS = "UI_SETTINGS"
+    UI_LOGS = "UI_LOGS"
+    MAIN = "MAIN"
