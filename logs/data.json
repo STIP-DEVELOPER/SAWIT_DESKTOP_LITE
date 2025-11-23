@@ -1,17 +1,5 @@
 [
     {
-        "timestamp": "2025-11-22T12:04:37",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-11-23T18:50:47",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
         "timestamp": "2025-11-23T18:51:15",
         "level": "INFO",
         "source": "UI_HOME",
@@ -25,6 +13,18 @@
     },
     {
         "timestamp": "2025-11-23T18:58:52",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-23T22:54:54",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-23T22:55:28",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
