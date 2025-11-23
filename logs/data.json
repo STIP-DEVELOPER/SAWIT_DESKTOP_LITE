@@ -1,30 +1,30 @@
 [
     {
-        "timestamp": "2025-11-22T09:44:19",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-11-22T11:47:48",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-11-22T11:48:07",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-11-22T12:04:22",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
         "timestamp": "2025-11-22T12:04:37",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-23T18:50:47",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-23T18:51:15",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-23T18:58:50",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-23T18:58:52",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
