@@ -122,6 +122,15 @@ class SettingsPage(QWidget):
         )
         grid.addWidget(serial_header, 4, 0, 1, 4, alignment=Qt.AlignLeft)
 
+        # -------------------------
+        # HEADER Lidar
+        # -------------------------
+        lidar_header = QLabel("Lidar")
+        lidar_header.setStyleSheet(
+            "font-weight: bold; font-size: 14px; margin-top: 10px;"
+        )
+        grid.addWidget(lidar_header, 6, 0, 1, 4, alignment=Qt.AlignLeft)
+
         # Row 5 → Serial Port + Baudrate
         grid.addWidget(QLabel("Serial Port:"), 5, 0, alignment=Qt.AlignRight)
         grid.addWidget(self.select_port, 5, 1)

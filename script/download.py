@@ -65,13 +65,13 @@ class GoogleDriveDownloader:
 
 def download_models():
     FOLDER_ID = "19usAPzpfeNHq4c9mxSAJZQ0M7g0AlNHo"
-    downloader = GoogleDriveDownloader(folder_id=FOLDER_ID, models_dir="models1")
+    downloader = GoogleDriveDownloader(folder_id=FOLDER_ID, models_dir="models")
     downloader.run()
 
 
 def download_sample_video():
     FOLDER_ID = "1gokdUNV1NgoYOjzWjnkxMDrZ_9KCsa0c"
-    downloader = GoogleDriveDownloader(folder_id=FOLDER_ID, models_dir="videos1")
+    downloader = GoogleDriveDownloader(folder_id=FOLDER_ID, models_dir="videos")
     downloader.run()
 
 

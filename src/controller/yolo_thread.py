@@ -7,6 +7,7 @@ from controller.serial import SerialController
 from controller.yolo_detector import YOLOWebcamDetectorController
 from enums.log import LogLevel, LogSource
 from utils.logger import add_log
+from controller.tfluna import TFLunaController
 
 
 class YOLOThreadController(QThread):
@@ -19,6 +20,19 @@ class YOLOThreadController(QThread):
         self._init_detector()
         self._init_serial_controller()
         self.is_running = False
+
+        self.left_distance = None
+        self.right_distance = None
+        self.tfluna_threshold = 50
+
+        self.tf_luna_left = TFLunaController(port="PORT_KIRI")
+        self.tf_luna_right = TFLunaController(port="PORT_KANAN")
+
+        self.tf_luna_left.data_received.connect(self.update_left_distance)
+        self.tf_luna_right.data_received.connect(self.update_right_distance)
+
+        self.tf_luna_left.start()
+        self.tf_luna_right.start()
 
     def _init_configs(self):
         self.config_manager = ConfigManager()
@@ -68,6 +82,12 @@ class YOLOThreadController(QThread):
             except Exception as e:
                 self._handle_detection_error(e)
 
+    def update_left_distance(self, data):
+        self.left_distance = data["distance_cm"]
+
+    def update_right_distance(self, data):
+        self.right_distance = data["distance_cm"]
+
     def _perform_detection(self, frame):
         """Run YOLO detection on frame"""
         return self.detector.model(frame, conf=self.conf_threshold, verbose=False)
@@ -100,6 +120,11 @@ class YOLOThreadController(QThread):
         class_name = class_names[int(box.cls)]
         confidence = float(box.conf)
         position = self.detector.get_position(center_x, frame_width)
+
+        if self.left_distance and self.left_distance < 50:
+            position = "RIGHT"
+        elif self.right_distance and self.right_distance < 50:
+            position = "LEFT"
 
         self._send_serial_message(position)
         self._emit_detection_message(class_name, position, confidence)
