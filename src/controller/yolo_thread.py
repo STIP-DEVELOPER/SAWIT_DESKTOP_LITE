@@ -1,12 +1,10 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtGui import QImage
 import cv2
+from ultralytics import YOLO
 
 from configs.config_manager import ConfigManager
 from controller.serial import SerialController
-from controller.yolo_detector import YOLOWebcamDetectorController
-from enums.log import LogLevel, LogSource
-from utils.logger import add_log
 from controller.tfluna import TFLunaController
 
 
@@ -16,23 +14,13 @@ class YOLOThreadController(QThread):
 
     def __init__(self):
         super().__init__()
+
+        self.running = False
+        self.cap = None
+
         self._init_configs()
-        self._init_detector()
         self._init_serial_controller()
-        self.is_running = False
-
-        self.left_distance = None
-        self.right_distance = None
-        self.tfluna_threshold = 50
-
-        self.tf_luna_left = TFLunaController(port="PORT_KIRI")
-        self.tf_luna_right = TFLunaController(port="PORT_KANAN")
-
-        self.tf_luna_left.data_received.connect(self.update_left_distance)
-        self.tf_luna_right.data_received.connect(self.update_right_distance)
-
-        self.tf_luna_left.start()
-        self.tf_luna_right.start()
+        self._init_lidar_controller()
 
     def _init_configs(self):
         self.config_manager = ConfigManager()
@@ -43,13 +31,10 @@ class YOLOThreadController(QThread):
         self.serial_port = self.configs.get("SERIAL_PORT", "")
         self.baudrate = self.configs.get("BAUDRATE", 9600)
 
-    def _init_detector(self):
-        model_path = self._get_model_path(self.model_name)
+        self.frame_skip = 5
+        self.counter = 0
 
-        self.detector = YOLOWebcamDetectorController(
-            model_path=model_path,
-            conf_threshold=self.conf_threshold,
-        )
+        self.model = YOLO(self._get_model_path(self.model_name))
 
     def _get_model_path(self, model_name):
         return f"models/{model_name}_ncnn_model"
@@ -63,24 +48,19 @@ class YOLOThreadController(QThread):
         else:
             self.serial_controller = None
 
-    def setup(self):
-        """Setup webcam for YOLO detector"""
-        self.detector.setup_webcam(
-            camera_index=self.camera_index, inferance_type="video"
-        )
+    def _init_lidar_controller(self):
+        self.left_distance = None
+        self.right_distance = None
+        self.tfluna_threshold = 50
 
-    def run(self):
-        self.is_running = True
-        while self.is_running:
-            frame = self.detector.get_latest_frame()
-            if frame is None:
-                continue
+        self.tf_luna_left = TFLunaController(port="PORT_KIRI")
+        self.tf_luna_right = TFLunaController(port="PORT_KANAN")
 
-            try:
-                results = self._perform_detection(frame)
-                self._process_frame(frame, results)
-            except Exception as e:
-                self._handle_detection_error(e)
+        self.tf_luna_left.data_received.connect(self.update_left_distance)
+        self.tf_luna_right.data_received.connect(self.update_right_distance)
+
+        self.tf_luna_left.start()
+        self.tf_luna_right.start()
 
     def update_left_distance(self, data):
         self.left_distance = data["distance_cm"]
@@ -88,50 +68,25 @@ class YOLOThreadController(QThread):
     def update_right_distance(self, data):
         self.right_distance = data["distance_cm"]
 
-    def _perform_detection(self, frame):
-        """Run YOLO detection on frame"""
-        return self.detector.model(frame, conf=self.conf_threshold, verbose=False)
+    def _is_distance_valid(self, position):
+        threshold_cm = 200  # 2 meter
 
-    def _process_frame(self, frame, results):
-        """Process frame: emit image and detection messages"""
-        self._emit_frame(frame, results)
-        self._process_detections(frame, results)
+        if position == "LEFT":
+            return self.left_distance is not None and self.left_distance < threshold_cm
 
-    def _emit_frame(self, frame, results):
-        annotated_frame = results[0].plot()
-        qt_image = self._convert_to_qimage(annotated_frame)
-        self.frame_ready.emit(qt_image)
+        elif position == "RIGHT":
+            return (
+                self.right_distance is not None and self.right_distance < threshold_cm
+            )
 
-    def _convert_to_qimage(self, frame):
-        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        h, w, ch = rgb.shape
-        return QImage(rgb.data, w, h, ch * w, QImage.Format_RGB888)
+        return False
 
-    def _process_detections(self, frame, results):
-        frame_width = frame.shape[1]
-        if not results[0].boxes:
-            return
+    def get_object_position(self, frame_width, box):
+        x1, y1, x2, y2 = box.xyxy[0]
+        x_center = (x1 + x2) / 2
+        half_width = frame_width / 2
 
-        for box in results[0].boxes:
-            self._handle_single_detection(box, results[0].names, frame_width)
-
-    def _handle_single_detection(self, box, class_names, frame_width):
-        center_x, _, _ = self.detector.get_center_coordinates(box)
-        class_name = class_names[int(box.cls)]
-        confidence = float(box.conf)
-        position = self.detector.get_position(center_x, frame_width)
-
-        if self.left_distance and self.left_distance < 50:
-            position = "RIGHT"
-        elif self.right_distance and self.right_distance < 50:
-            position = "LEFT"
-
-        self._send_serial_message(position)
-        self._emit_detection_message(class_name, position, confidence)
-
-    def _emit_detection_message(self, class_name, position, confidence):
-        msg = f"[{class_name}] {position} | Conf: {confidence:.2f}"
-        self.detection_ready.emit(msg)
+        return "LEFT" if x_center < half_width else "RIGHT"
 
     def _send_serial_message(self, message):
         if (
@@ -146,14 +101,62 @@ class YOLOThreadController(QThread):
 
             self.serial_controller.send(message)
 
-    def _handle_detection_error(self, error):
-        err_msg = f"[ERROR] Detection failed: {str(error)}"
-        self.detection_ready.emit(err_msg)
-        add_log(LogLevel.ERROR.value, LogSource.UI_SETTINGS.value, err_msg)
+    def setup(self):
+        inferance_type = "videos"
+        source = (
+            self.camera_index
+            if inferance_type == "webcam"
+            else "videos/sample-large-1.MOV"
+        )
+
+        self.cap = cv2.VideoCapture(source)
+        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
+        self.cap.set(cv2.CAP_PROP_FPS, 30)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+    def run(self):
+        self.running = True
+
+        while self.running:
+            ret, frame = self.cap.read()
+            if not ret:
+                continue
+
+            self.counter += 1
+            do_detect = self.counter % self.frame_skip == 0
+
+            if do_detect:
+                results = self.model.predict(
+                    frame,
+                    verbose=False,
+                    imgsz=640,
+                    device="cpu",
+                )
+                annotated = results[0].plot()
+            else:
+                annotated = frame
+
+            rgb = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
+            h, w, ch = rgb.shape
+            qt_image = QImage(rgb.data, w, h, ch * w, QImage.Format_RGB888)
+            self.frame_ready.emit(qt_image)
+
+            if do_detect and results[0].boxes:
+                cls = int(results[0].boxes[0].cls)
+                name = results[0].names[cls]
+                conf = float(results[0].boxes[0].conf)
+                box = results[0].boxes[0]
+                position = self.get_object_position(frame.shape[1], box)
+
+                self.detection_ready.emit(f"{name} ({conf:.2f}) | {position}")
+
+                if self._is_distance_valid(position):
+                    self._send_serial_message(position)
 
     def stop(self):
-        "Stop thread"
-        self.is_running = False
-        if self.isRunning():
-            self.wait(1000)
-        self.detector.cleanup()
+        self.running = False
+        if self.cap:
+            self.cap.release()
+        self.quit()
+        self.wait(200)

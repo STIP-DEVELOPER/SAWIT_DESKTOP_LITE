@@ -1,32 +1,32 @@
 [
     {
-        "timestamp": "2025-11-23T22:55:28",
+        "timestamp": "2025-11-26T00:11:32",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[TF-Luna] Serial error: [Errno 2] could not open port PORT_KIRI: [Errno 2] No such file or directory: 'PORT_KIRI'"
+    },
+    {
+        "timestamp": "2025-11-26T00:11:46",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
     },
     {
-        "timestamp": "2025-11-24T09:18:43",
+        "timestamp": "2025-11-26T00:12:19",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference started"
     },
     {
-        "timestamp": "2025-11-24T09:19:00",
+        "timestamp": "2025-11-26T00:12:19",
         "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[TF-Luna] Serial error: [Errno 2] could not open port PORT_KIRI: [Errno 2] No such file or directory: 'PORT_KIRI'"
     },
     {
-        "timestamp": "2025-11-24T09:24:07",
+        "timestamp": "2025-11-26T00:12:19",
         "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-11-24T09:24:25",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[TF-Luna] Serial error: [Errno 2] could not open port PORT_KANAN: [Errno 2] No such file or directory: 'PORT_KANAN'"
     }
 ]
