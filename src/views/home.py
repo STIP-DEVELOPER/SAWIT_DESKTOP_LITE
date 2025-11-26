@@ -18,8 +18,8 @@ from controller.yolo import YOLOThreadController
 
 
 class HomePage(QWidget):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.show_camera = True
         self.is_running = False
         self.yolo_thread = None

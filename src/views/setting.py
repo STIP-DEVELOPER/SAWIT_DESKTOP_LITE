@@ -31,8 +31,9 @@ def detect_camera_indexes(max_test=5):
 
 
 class SettingsPage(QWidget):
-    def __init__(self):
-        super().__init__()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
         self.configs = ConfigManager()
         self._build_ui()

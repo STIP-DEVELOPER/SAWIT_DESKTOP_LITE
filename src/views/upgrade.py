@@ -16,8 +16,9 @@ from configs import colors
 
 
 class UpgradePage(QWidget):
-    def __init__(self):
-        super().__init__()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
         self.setWindowTitle("Model Upgrade Tool")
         self.setStyleSheet(f"background-color: {colors.BACKGROUND_COLOR};")
