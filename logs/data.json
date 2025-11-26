@@ -1,32 +1,32 @@
 [
     {
-        "timestamp": "2025-11-26T00:11:32",
+        "timestamp": "2025-11-26T16:50:43",
         "level": "INFO",
-        "source": "TFLUNA_CONTROLLER",
-        "message": "[TF-Luna] Serial error: [Errno 2] could not open port PORT_KIRI: [Errno 2] No such file or directory: 'PORT_KIRI'"
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'large_tree', 'CONFIDENCE': 0.6, 'BAUDRATE': 9600, 'FPS': 10, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200}"
     },
     {
-        "timestamp": "2025-11-26T00:11:46",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-11-26T00:12:19",
+        "timestamp": "2025-11-26T16:53:27",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference started"
     },
     {
-        "timestamp": "2025-11-26T00:12:19",
+        "timestamp": "2025-11-26T16:53:27",
         "level": "INFO",
         "source": "TFLUNA_CONTROLLER",
-        "message": "[TF-Luna] Serial error: [Errno 2] could not open port PORT_KIRI: [Errno 2] No such file or directory: 'PORT_KIRI'"
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
     },
     {
-        "timestamp": "2025-11-26T00:12:19",
+        "timestamp": "2025-11-26T16:53:27",
         "level": "INFO",
         "source": "TFLUNA_CONTROLLER",
-        "message": "[TF-Luna] Serial error: [Errno 2] could not open port PORT_KANAN: [Errno 2] No such file or directory: 'PORT_KANAN'"
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-26T16:53:38",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
     }
 ]

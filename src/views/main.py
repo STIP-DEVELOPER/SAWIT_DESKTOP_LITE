@@ -11,6 +11,7 @@ from ui.navigation import TopNavigation
 from views.home import HomePage
 from views.logger import LoggerPage
 from views.setting import SettingsPage
+from views.upgrade import UpgradePage
 
 
 class MainWindow(QMainWindow):
@@ -38,10 +39,12 @@ class MainWindow(QMainWindow):
         self.page_home = HomePage()
         self.page_logger = LoggerPage()
         self.page_settings = SettingsPage()
+        self.page_upgrade = UpgradePage()
 
         self.pages.addWidget(self.page_home)  # index 0
         self.pages.addWidget(self.page_logger)  # index 1
         self.pages.addWidget(self.page_settings)  # index 2
+        self.pages.addWidget(self.page_upgrade)  # index 3  ← TAMBAHKAN
 
         root_layout.addWidget(self.navigation)
         root_layout.addWidget(self.pages)
