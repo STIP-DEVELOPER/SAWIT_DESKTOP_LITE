@@ -5,11 +5,10 @@ from PyQt5.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QStackedWidget,
-    QSizePolicy,
+    QScrollArea,
 )
 from PyQt5.QtCore import Qt
 
-from configs import colors
 from ui.button import Button
 from ui.modal import Modal
 
@@ -26,13 +25,9 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Sawit Desktop")
-        self.showMaximized()  # Tidak fullscreen → layout tetap responsif
+        self._set_responsive_geometry()
 
         self.stack = QStackedWidget()
-
-        # ==========================
-        # HEADER
-        # ==========================
         self.header_widget = QWidget()
         self.header_layout = QHBoxLayout()
         self.header_layout.setContentsMargins(20, 20, 20, 0)
@@ -43,7 +38,6 @@ class MainWindow(QMainWindow):
         self.back_btn.clicked.connect(lambda: self.stack.setCurrentIndex(0))
         self.back_btn.setVisible(False)
 
-        # Title
         self.title_label = QLabel("Dashboard")
         self.title_label.setStyleSheet(
             """
@@ -55,14 +49,9 @@ class MainWindow(QMainWindow):
         """
         )
 
-        # Set agar label title bisa stretch
-        self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-
-        # Exit button
         self.exit_btn = Button(text="Exit", icon_path=get_icon("exit.png"))
         self.exit_btn.clicked.connect(self._confirm_exit)
 
-        # Left group
         left_box = QHBoxLayout()
         left_box.addWidget(self.back_btn)
         left_box.addWidget(self.title_label)
@@ -73,16 +62,10 @@ class MainWindow(QMainWindow):
 
         self.header_widget.setLayout(self.header_layout)
 
-        # ==========================
-        # MAIN CONTENT
-        # ==========================
         main_widget = QWidget()
         main_layout = QVBoxLayout()
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.setSpacing(5)
-
-        # Agar stack bisa memenuhi ruang
-        self.stack.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         main_layout.addWidget(self.header_widget)
         main_layout.addWidget(self.stack)
@@ -90,29 +73,30 @@ class MainWindow(QMainWindow):
         main_widget.setLayout(main_layout)
         self.setCentralWidget(main_widget)
 
-        # ==========================
-        # PAGES
-        # ==========================
         self.dashboard_page = DashboardPage(parent=self)
         self.page_inference = HomePage(parent=self)
         self.page_logs = LoggerPage(parent=self)
         self.page_settings = SettingsPage(parent=self)
         self.page_upgrade = UpgradePage(parent=self)
 
-        self.stack.addWidget(self.dashboard_page)
-        self.stack.addWidget(self.page_inference)
-        self.stack.addWidget(self.page_logs)
-        self.stack.addWidget(self.page_settings)
-        self.stack.addWidget(self.page_upgrade)
+        self.stack.addWidget(self.wrap_with_scroll(self.dashboard_page))  # index 0
+        self.stack.addWidget(self.wrap_with_scroll(self.page_inference))  # index 1
+        self.stack.addWidget(self.wrap_with_scroll(self.page_logs))  # index 2
+        self.stack.addWidget(self.wrap_with_scroll(self.page_settings))  # index 3
+        self.stack.addWidget(self.wrap_with_scroll(self.page_upgrade))  # index 4
 
         self.stack.setCurrentIndex(0)
 
         self._update_header_visibility()
         self.stack.currentChanged.connect(self._update_header_visibility)
 
-    # =================================================
-    # Title & Layout Behavior
-    # =================================================
+    def wrap_with_scroll(self, widget):
+        scroll = QScrollArea()
+        scroll.setWidget(widget)
+        scroll.setWidgetResizable(True)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # hanya vertical
+        return scroll
+
     def _update_header_visibility(self):
         current = self.stack.currentIndex()
         self.back_btn.setVisible(current != 0)
@@ -120,12 +104,10 @@ class MainWindow(QMainWindow):
         titles = ["Dashboard", "Inference", "Logs", "Settings", "Upgrade"]
         self.title_label.setText(titles[current])
 
-        # Dashboard → left align
-        self.title_label.setAlignment(Qt.AlignLeft if current == 0 else Qt.AlignCenter)
+    def _set_responsive_geometry(self):
 
-    # =================================================
-    # Exit Confirmation
-    # =================================================
+        self.showFullScreen()
+
     def _confirm_exit(self):
         modal = Modal(title="Apakah yakin anda mau keluar?", on_ok=self.close)
         modal.exec_()
