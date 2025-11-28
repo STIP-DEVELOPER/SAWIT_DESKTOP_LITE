@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QWidget,
 )
-from PyQt5.QtCore import Qt
 
 
 class Modal(QDialog):
