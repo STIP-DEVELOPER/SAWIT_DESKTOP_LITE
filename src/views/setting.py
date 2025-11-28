@@ -57,12 +57,10 @@ class SettingsPage(QWidget):
             usb_ports = ["No ports detected"]
 
         self.select_camera = Dropdown(
-            label_text="Camera Index",
             items=detected_cameras,
         )
 
         self.select_model = Dropdown(
-            label_text="Select Model",
             items=[
                 "small_tree",
                 "medium_tree",
@@ -71,39 +69,32 @@ class SettingsPage(QWidget):
         )
 
         self.select_port = Dropdown(
-            label_text="Serial Port",
             items=usb_ports,
         )
 
         self.select_baudrate = Dropdown(
-            label_text="Baudrate",
             items=["9600", "19200", "38400", "57600", "115200"],
         )
 
         self.select_fps = Dropdown(
-            label_text="FPS (Frame Rate)",
             items=["5", "10", "15", "20", "25", "30"],
         )
 
         self.confidence = InputForm(label="Confidence Score (0.1 - 0.9)")
 
         self.confidence = Dropdown(
-            label_text="Confidence Score (0.5 - 0.8)",
             items=["0.5", "0.6", "0.7", "0.8"],
         )
 
         self.select_lidar_left = Dropdown(
-            label_text="Lidar Left Port",
             items=usb_ports,
         )
 
         self.select_lidar_right = Dropdown(
-            label_text="Lidar Right Port",
             items=usb_ports,
         )
 
         self.select_lidar_threshold = Dropdown(
-            label_text="Lidar Threshold (cm)",
             items=["100", "150", "200", "250", "300", "350", "400", "500"],
         )
 

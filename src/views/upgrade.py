@@ -13,6 +13,7 @@ from ui.input import InputForm
 from ui.button import Button
 from controller.upgrade import UpgradeThread
 from configs import colors
+from utils.icon import get_icon
 
 
 class UpgradePage(QWidget):
@@ -20,80 +21,38 @@ class UpgradePage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setWindowTitle("Model Upgrade Tool")
-        self.setStyleSheet(f"background-color: {colors.BACKGROUND_COLOR};")
-
         main_layout = QVBoxLayout()
         main_layout.setContentsMargins(28, 28, 28, 28)
         main_layout.setSpacing(20)
 
-        # ------------------------------------
-        # CARD CONTAINER
-        # ------------------------------------
         card = QFrame()
-        card.setStyleSheet(
-            f"""
-            background-color: {colors.SURFACE_COLOR};
-            border: 1px solid {colors.BORDER_COLOR};
-            border-radius: 10px;
-            """
-        )
         card_layout = QVBoxLayout()
         card_layout.setContentsMargins(24, 24, 24, 24)
         card_layout.setSpacing(18)
 
-        # ------------------------------------
-        # TITLE
-        # ------------------------------------
-        title = QLabel("Upgrade Models & Sample Videos")
-        title.setAlignment(Qt.AlignCenter)
-        title.setStyleSheet(
-            f"font-size: 20px; font-weight: bold; color: {colors.TEXT_PRIMARY};"
-        )
-        card_layout.addWidget(title)
-
-        # ------------------------------------
-        # FOLDER INPUT
-        # ------------------------------------
         self.folder_input = InputForm(
-            label="Google Drive Folder ID",
-            placeholder="Enter Google Drive Folder ID",
-            prefix_icon="assets/icons/folder.png",
-            size="md",
+            placeholder="Enter token",
+            prefix_icon=get_icon("folder.png"),
+            size="xl",
         )
         card_layout.addWidget(self.folder_input)
 
-        # ------------------------------------
-        # BUTTONS (SIDE BY SIDE)
-        # ------------------------------------
         btn_row = QHBoxLayout()
         btn_row.setSpacing(12)
+        btn_row.addStretch()
 
         self.btn_upgrade_models = Button(
             "Upgrade Models",
-            icon_path="assets/icons/upload.png",
+            icon_path=get_icon("upgrade.png"),
             bg_color=colors.PRIMARY_COLOR,
             hover_color=colors.PRIMARY_HOVER,
         )
         self.btn_upgrade_models.clicked.connect(self.upgrade_models)
-
-        self.btn_upgrade_videos = Button(
-            "Upgrade Sample Video",
-            icon_path="assets/icons/video.png",
-            bg_color=colors.ACCENT_COLOR,
-            hover_color=colors.ACCENT_HOVER,
-        )
-        self.btn_upgrade_videos.clicked.connect(self.upgrade_sample_video)
-
         btn_row.addWidget(self.btn_upgrade_models)
-        btn_row.addWidget(self.btn_upgrade_videos)
 
         card_layout.addLayout(btn_row)
 
-        # ------------------------------------
-        # LOADING SPINNER
-        # ------------------------------------
-        self.spinner = QMovie("assets/icons/spinner.gif")
+        self.spinner = QMovie("spinner.gif")
         self.loading_label = QLabel("")
         self.loading_label.setAlignment(Qt.AlignCenter)
         self.loading_label.setMovie(self.spinner)
@@ -136,16 +95,12 @@ class UpgradePage(QWidget):
         if status:
             self.loading_label.setVisible(True)
             self.spinner.start()
-
             self.btn_upgrade_models.setDisabled(True)
-            self.btn_upgrade_videos.setDisabled(True)
             self.folder_input.input.setDisabled(True)
         else:
             self.spinner.stop()
             self.loading_label.setVisible(False)
-
             self.btn_upgrade_models.setDisabled(False)
-            self.btn_upgrade_videos.setDisabled(False)
             self.folder_input.input.setDisabled(False)
 
     # -------------------------------------------------------
@@ -172,11 +127,3 @@ class UpgradePage(QWidget):
 
         self.append_log(f"▶ Starting model upgrade (ID: {folder_id})...\n")
         self.run_upgrade(folder_id, "models")
-
-    def upgrade_sample_video(self):
-        folder_id = (
-            self.folder_input.get_value().strip() or "1gokdUNV1NgoYOjzWjnkxMDrZ_9KCsa0c"
-        )
-
-        self.append_log(f"▶ Starting video upgrade (ID: {folder_id})...\n")
-        self.run_upgrade(folder_id, "videos")

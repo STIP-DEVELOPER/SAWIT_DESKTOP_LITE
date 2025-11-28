@@ -1,6 +1,4 @@
-import sys
 from PyQt5.QtWidgets import (
-    QApplication,
     QMainWindow,
     QWidget,
     QVBoxLayout,
@@ -10,6 +8,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 
+from configs import colors
 from ui.button import Button
 from ui.modal import Modal
 
@@ -32,10 +31,10 @@ class MainWindow(QMainWindow):
         self.header_widget = QWidget()
         self.header_layout = QHBoxLayout()
         self.header_layout.setContentsMargins(20, 20, 20, 0)
-        self.header_layout.setSpacing(15)
+        self.header_layout.setSpacing(30)
 
         # Back button
-        self.back_btn = Button(text="Back")
+        self.back_btn = Button(text="Back", icon_path=get_icon("arrow-left-1.png"))
         self.back_btn.clicked.connect(lambda: self.stack.setCurrentIndex(0))
         self.back_btn.setVisible(False)
 
