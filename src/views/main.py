@@ -1,11 +1,12 @@
+import sys
 from PyQt5.QtWidgets import (
+    QApplication,
     QMainWindow,
     QWidget,
     QVBoxLayout,
     QHBoxLayout,
     QLabel,
     QStackedWidget,
-    QScrollArea,
 )
 from PyQt5.QtCore import Qt
 
@@ -79,23 +80,16 @@ class MainWindow(QMainWindow):
         self.page_settings = SettingsPage(parent=self)
         self.page_upgrade = UpgradePage(parent=self)
 
-        self.stack.addWidget(self.wrap_with_scroll(self.dashboard_page))  # index 0
-        self.stack.addWidget(self.wrap_with_scroll(self.page_inference))  # index 1
-        self.stack.addWidget(self.wrap_with_scroll(self.page_logs))  # index 2
-        self.stack.addWidget(self.wrap_with_scroll(self.page_settings))  # index 3
-        self.stack.addWidget(self.wrap_with_scroll(self.page_upgrade))  # index 4
+        self.stack.addWidget(self.dashboard_page)  # index 0
+        self.stack.addWidget(self.page_inference)  # index 1
+        self.stack.addWidget(self.page_logs)  # index 2
+        self.stack.addWidget(self.page_settings)  # index 3
+        self.stack.addWidget(self.page_upgrade)  # index 4
 
         self.stack.setCurrentIndex(0)
 
         self._update_header_visibility()
         self.stack.currentChanged.connect(self._update_header_visibility)
-
-    def wrap_with_scroll(self, widget):
-        scroll = QScrollArea()
-        scroll.setWidget(widget)
-        scroll.setWidgetResizable(True)
-        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # hanya vertical
-        return scroll
 
     def _update_header_visibility(self):
         current = self.stack.currentIndex()
