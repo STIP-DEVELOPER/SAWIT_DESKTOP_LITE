@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
         self.header_layout.setSpacing(30)
 
         # Back button
-        self.back_btn = Button(text="Back", icon_path=get_icon("arrow-left-1.png"))
+        self.back_btn = Button(text="Back", icon_path=get_icon("arrow-left.png"))
         self.back_btn.clicked.connect(lambda: self.stack.setCurrentIndex(0))
         self.back_btn.setVisible(False)
 
@@ -99,7 +99,6 @@ class MainWindow(QMainWindow):
         self.title_label.setText(titles[current])
 
     def _set_responsive_geometry(self):
-
         self.showFullScreen()
 
     def _confirm_exit(self):
