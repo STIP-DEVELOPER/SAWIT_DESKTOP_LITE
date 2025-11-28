@@ -90,18 +90,28 @@ class TopNavigation(QWidget):
         self.btn_logs = NavItem("Logs", "logs.png")
         self.btn_settings = NavItem("Settings", "settings.png")
         self.btn_exit = NavItem("Exit", "exit.png")
+        self.btn_upgrade = NavItem("Upgrade", "update.png")
 
-        self.buttons = [self.btn_home, self.btn_logs, self.btn_settings]
+        self.buttons = [
+            self.btn_home,
+            self.btn_logs,
+            self.btn_settings,
+            self.btn_upgrade,
+        ]
 
         layout.addWidget(self.btn_home)
         layout.addWidget(self.btn_logs)
         layout.addWidget(self.btn_settings)
+        layout.addWidget(self.btn_upgrade)
+
         layout.addStretch()
         layout.addWidget(self.btn_exit)
 
         self.btn_home.clicked.connect(lambda: self.on_nav_clicked(0))
         self.btn_logs.clicked.connect(lambda: self.on_nav_clicked(1))
         self.btn_settings.clicked.connect(lambda: self.on_nav_clicked(2))
+        self.btn_upgrade.clicked.connect(lambda: self.on_nav_clicked(3))
+
         self.btn_exit.clicked.connect(self.on_exit)
 
         self.set_active(0)  # Default: Home active

@@ -31,8 +31,9 @@ def detect_camera_indexes(max_test=5):
 
 
 class SettingsPage(QWidget):
-    def __init__(self):
-        super().__init__()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
         self.configs = ConfigManager()
         self._build_ui()
@@ -49,13 +50,17 @@ class SettingsPage(QWidget):
         if not detected_cameras:
             detected_cameras = ["0", "1"]  # fallback
 
+        usb_ports = get_serial_ports()
+        usb_ports.append("None")
+
+        if not usb_ports:
+            usb_ports = ["No ports detected"]
+
         self.select_camera = Dropdown(
-            label_text="Camera Index",
             items=detected_cameras,
         )
 
         self.select_model = Dropdown(
-            label_text="Select Model",
             items=[
                 "small_tree",
                 "medium_tree",
@@ -64,25 +69,33 @@ class SettingsPage(QWidget):
         )
 
         self.select_port = Dropdown(
-            label_text="Serial Port",
-            items=get_serial_ports(),
+            items=usb_ports,
         )
 
         self.select_baudrate = Dropdown(
-            label_text="Baudrate",
             items=["9600", "19200", "38400", "57600", "115200"],
         )
 
         self.select_fps = Dropdown(
-            label_text="FPS (Frame Rate)",
-            items=["15", "24", "30", "60"],
+            items=["5", "10", "15", "20", "25", "30"],
         )
 
         self.confidence = InputForm(label="Confidence Score (0.1 - 0.9)")
 
         self.confidence = Dropdown(
-            label_text="Confidence Score (0.5 - 0.8)",
             items=["0.5", "0.6", "0.7", "0.8"],
+        )
+
+        self.select_lidar_left = Dropdown(
+            items=usb_ports,
+        )
+
+        self.select_lidar_right = Dropdown(
+            items=usb_ports,
+        )
+
+        self.select_lidar_threshold = Dropdown(
+            items=["100", "150", "200", "250", "300", "350", "400", "500"],
         )
 
         # -------------------------
@@ -129,6 +142,25 @@ class SettingsPage(QWidget):
         grid.addWidget(QLabel("Baudrate:"), 5, 2, alignment=Qt.AlignRight)
         grid.addWidget(self.select_baudrate, 5, 3)
 
+        # LIDAR Header
+        lidar_header = QLabel("Lidar")
+        lidar_header.setStyleSheet(
+            "font-weight: bold; font-size: 14px; margin-top: 10px;"
+        )
+        grid.addWidget(lidar_header, 6, 0, 1, 4)
+
+        # LIDAR Left
+        grid.addWidget(QLabel("Lidar Left Port:"), 7, 0, alignment=Qt.AlignRight)
+        grid.addWidget(self.select_lidar_left, 7, 1)
+
+        # LIDAR Right
+        grid.addWidget(QLabel("Lidar Right Port:"), 7, 2, alignment=Qt.AlignRight)
+        grid.addWidget(self.select_lidar_right, 7, 3)
+
+        # LIDAR Threshold
+        grid.addWidget(QLabel("Lidar Threshold:"), 8, 0, alignment=Qt.AlignRight)
+        grid.addWidget(self.select_lidar_threshold, 8, 1)
+
         # Save Button
         self.save_button = Button(
             text="Save Settings",
@@ -167,6 +199,15 @@ class SettingsPage(QWidget):
         if "FPS" in cfg:
             self.select_fps.set_value(str(cfg["FPS"]))
 
+        if "LIDAR_LEFT_PORT" in cfg:
+            self.select_lidar_left.set_value(cfg["LIDAR_LEFT_PORT"])
+
+        if "LIDAR_RIGHT_PORT" in cfg:
+            self.select_lidar_right.set_value(cfg["LIDAR_RIGHT_PORT"])
+
+        if "LIDAR_THRESHOLD" in cfg:
+            self.select_lidar_threshold.set_value(str(cfg["LIDAR_THRESHOLD"]))
+
     def _save_settings(self):
         try:
             camera_index = int(self.select_camera.get_value())
@@ -175,6 +216,9 @@ class SettingsPage(QWidget):
             confidence = float(self.confidence.get_value())
             baudrate = int(self.select_baudrate.get_value())
             fps = int(self.select_fps.get_value())
+            lidar_left_port = self.select_lidar_left.get_value()
+            lidar_right_port = self.select_lidar_right.get_value()
+            lidar_threshold = int(self.select_lidar_threshold.get_value())
 
             self.configs.set_config("CAMERA_INDEX", camera_index)
             self.configs.set_config("YOLO_MODEL", model)
@@ -182,6 +226,9 @@ class SettingsPage(QWidget):
             self.configs.set_config("CONFIDENCE", confidence)
             self.configs.set_config("BAUDRATE", baudrate)
             self.configs.set_config("FPS", fps)
+            self.configs.set_config("LIDAR_LEFT_PORT", lidar_left_port)
+            self.configs.set_config("LIDAR_RIGHT_PORT", lidar_right_port)
+            self.configs.set_config("LIDAR_THRESHOLD", lidar_threshold)
 
             QMessageBox.information(self, "Successful", "Berhasil disimpan")
 

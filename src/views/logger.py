@@ -18,8 +18,8 @@ from utils.logger import get_logs
 
 class LoggerPage(QWidget):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.logs_data = get_logs()  # Ganti nama variabel untuk lebih jelas
         self._build_ui()
 

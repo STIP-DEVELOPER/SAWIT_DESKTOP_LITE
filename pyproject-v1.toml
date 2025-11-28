@@ -5,25 +5,35 @@ requires-python = ">=3.10"
 
 dependencies = [
     "numpy<2",
-    "pyserial>=3.5",
+    "ncnn>=1.0.20250916",
     "opencv-python>=4.11.0.86",
+    "pyserial>=3.5",
     "ultralytics>=8.3.229",
-    # ==== MacOS ====
+
+    # MAC gunakan PyQt5
     "pyqt5>=5.15.11; sys_platform == 'darwin'",
     "pyqt5-qt5==5.15.18; sys_platform == 'darwin'",
-    # ==== Raspberry Pi ====
-    # Tidak pakai PyQt5 pip — pakai APT (lebih stabil)
-    # opsional: jika mau pakai PySide6 di Pi
+
+    # Raspberry Pi gunakan PySide6
     # "pyside6>=6.7.0; sys_platform == 'linux' and platform_machine == 'aarch64'",
-    # ==== PyTorch ====
+
+    # ---- TORCH PER PLATFORM ----
+    # MAC Intel (x86_64)
     "torch==2.0.1; sys_platform == 'darwin' and platform_machine == 'x86_64'",
+
+    # MAC ARM (arm64)
     "torch==2.9.1; sys_platform == 'darwin' and platform_machine == 'arm64'",
+
+    # Raspberry Pi (Linux ARM64)
     "torch==2.2.2; sys_platform == 'linux' and platform_machine == 'aarch64'",
-    "gdown>=5.2.0",
 ]
 
 [tool.uv]
 required-environments = [
-    "sys_platform == 'darwin' and platform_machine == 'arm64'",
     "sys_platform == 'darwin' and platform_machine == 'x86_64'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux' and platform_machine == 'aarch64'",
 ]
+
+[dependency-groups]
+dev = ["pyinstaller>=6.16.0"]

@@ -14,12 +14,12 @@ from ui.button import Button
 from utils.format import format_log_text
 from utils.icon import get_icon
 from utils.logger import add_log
-from controller.yolo_thread import YOLOThreadController
+from controller.yolo import YOLOThreadController
 
 
 class HomePage(QWidget):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.show_camera = True
         self.is_running = False
         self.yolo_thread = None
