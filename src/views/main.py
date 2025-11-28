@@ -24,8 +24,9 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Sawit Desktop")
         self.showFullScreen()
+        self.setWindowTitle("Sawit Desktop")
+        self._set_responsive_geometry()
 
         # STACK (halaman utama)
         self.stack = QStackedWidget()
@@ -94,6 +95,9 @@ class MainWindow(QMainWindow):
 
         self._update_header()
         self.stack.currentChanged.connect(self._update_header)
+
+    def _set_responsive_geometry(self):
+        self.showFullScreen()
 
     # ------------------------------------------------------------------
     # WRAP PAGE WITH SCROLL AREA
