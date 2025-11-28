@@ -1,6 +1,4 @@
-import sys
 from PyQt5.QtWidgets import (
-    QApplication,
     QMainWindow,
     QWidget,
     QVBoxLayout,
@@ -16,7 +14,7 @@ from ui.modal import Modal
 from utils.icon import get_icon
 
 from views.dashboard import DashboardPage
-from views.home import HomePage
+from views.inference import InferencePage
 from views.logger import LoggerPage
 from views.setting import SettingsPage
 from views.upgrade import UpgradePage
@@ -111,7 +109,7 @@ class MainWindow(QMainWindow):
 
     def _load_pages(self):
         dashboard = self._wrap_scroll(DashboardPage(parent=self))
-        inference = self._wrap_scroll(HomePage(parent=self))
+        inference = self._wrap_scroll(InferencePage(parent=self))
         logs = self._wrap_scroll(LoggerPage(parent=self))
         settings = self._wrap_scroll(SettingsPage(parent=self))
         upgrade = self._wrap_scroll(UpgradePage(parent=self))
