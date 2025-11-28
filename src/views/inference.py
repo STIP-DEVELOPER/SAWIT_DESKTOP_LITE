@@ -17,7 +17,7 @@ from utils.logger import add_log
 from controller.yolo import YOLOThreadController
 
 
-class HomePage(QWidget):
+class InferencePage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.show_camera = True
@@ -64,6 +64,7 @@ class HomePage(QWidget):
 
         control_layout = QHBoxLayout()
         control_layout.setSpacing(20)
+        control_layout.setContentsMargins(0, 8, 0, 10)
         control_layout.setAlignment(Qt.AlignCenter)
         control_layout.addWidget(self.start_button)
         control_layout.addWidget(self.stop_button)
