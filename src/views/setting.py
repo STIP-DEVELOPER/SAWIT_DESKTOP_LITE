@@ -98,70 +98,53 @@ class SettingsPage(QWidget):
             items=["100", "150", "200", "250", "300", "350", "400", "500"],
         )
 
-        # -------------------------
-        # HEADER Camera
-        # -------------------------
         camera_header = QLabel("Camera")
         camera_header.setStyleSheet("font-weight: bold; font-size: 14px;")
         grid.addWidget(camera_header, 0, 0, 1, 4, alignment=Qt.AlignLeft)
 
-        # Row 1 → Camera Index + FPS
         grid.addWidget(QLabel("Camera Index:"), 1, 0, alignment=Qt.AlignRight)
         grid.addWidget(self.select_camera, 1, 1)
 
         grid.addWidget(QLabel("FPS:"), 1, 2, alignment=Qt.AlignRight)
         grid.addWidget(self.select_fps, 1, 3)
 
-        # -------------------------
-        # HEADER AI
-        # -------------------------
         ai_header = QLabel("AI")
         ai_header.setStyleSheet("font-weight: bold; font-size: 14px; margin-top: 10px;")
         grid.addWidget(ai_header, 2, 0, 1, 4, alignment=Qt.AlignLeft)
 
-        # Row 3 → Model + Confidence
         grid.addWidget(QLabel("Select Model:"), 3, 0, alignment=Qt.AlignRight)
         grid.addWidget(self.select_model, 3, 1)
 
         grid.addWidget(QLabel("Confidence:"), 3, 2, alignment=Qt.AlignRight)
         grid.addWidget(self.confidence, 3, 3)
 
-        # -------------------------
-        # HEADER Serial
-        # -------------------------
         serial_header = QLabel("Serial")
         serial_header.setStyleSheet(
             "font-weight: bold; font-size: 14px; margin-top: 10px;"
         )
         grid.addWidget(serial_header, 4, 0, 1, 4, alignment=Qt.AlignLeft)
 
-        # Row 5 → Serial Port + Baudrate
         grid.addWidget(QLabel("Serial Port:"), 5, 0, alignment=Qt.AlignRight)
         grid.addWidget(self.select_port, 5, 1)
 
         grid.addWidget(QLabel("Baudrate:"), 5, 2, alignment=Qt.AlignRight)
         grid.addWidget(self.select_baudrate, 5, 3)
 
-        # LIDAR Header
         lidar_header = QLabel("Lidar")
         lidar_header.setStyleSheet(
             "font-weight: bold; font-size: 14px; margin-top: 10px;"
         )
         grid.addWidget(lidar_header, 6, 0, 1, 4)
 
-        # LIDAR Left
         grid.addWidget(QLabel("Lidar Left Port:"), 7, 0, alignment=Qt.AlignRight)
         grid.addWidget(self.select_lidar_left, 7, 1)
 
-        # LIDAR Right
         grid.addWidget(QLabel("Lidar Right Port:"), 7, 2, alignment=Qt.AlignRight)
         grid.addWidget(self.select_lidar_right, 7, 3)
 
-        # LIDAR Threshold
         grid.addWidget(QLabel("Lidar Threshold:"), 8, 0, alignment=Qt.AlignRight)
         grid.addWidget(self.select_lidar_threshold, 8, 1)
 
-        # Save Button
         self.save_button = Button(
             text="Save Settings",
             icon_path=get_icon("save.png"),
@@ -171,7 +154,7 @@ class SettingsPage(QWidget):
         button_layout = QHBoxLayout()
         button_layout.addStretch()
         button_layout.addWidget(self.save_button)
-        button_layout.setContentsMargins(0, 0, 20, 0)
+        button_layout.setContentsMargins(0, 0, 20, 20)
 
         layout.addLayout(grid)
         layout.addLayout(button_layout)
