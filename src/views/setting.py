@@ -154,7 +154,7 @@ class SettingsPage(QWidget):
         button_layout = QHBoxLayout()
         button_layout.addStretch()
         button_layout.addWidget(self.save_button)
-        button_layout.setContentsMargins(0, 0, 20, 0)
+        button_layout.setContentsMargins(0, 0, 20, 20)
 
         layout.addLayout(grid)
         layout.addLayout(button_layout)
