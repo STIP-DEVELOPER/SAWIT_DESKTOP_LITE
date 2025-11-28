@@ -34,9 +34,20 @@ class MainWindow(QMainWindow):
 
         # HEADER ---------------------------------------------------------
         self.header_widget = QWidget()
+
         self.header_layout = QHBoxLayout()
-        self.header_layout.setContentsMargins(20, 20, 20, 0)
+
+        self.header_layout.setContentsMargins(10, 20, 20, 10)
         self.header_layout.setSpacing(30)
+
+        self.header_widget.setStyleSheet(
+            """
+            QWidget {
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+        """
+        )
 
         # Back
         self.back_btn = Button(text="Back", icon_path=get_icon("arrow-left.png"))
