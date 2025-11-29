@@ -6,7 +6,7 @@ from threading import Lock
 LOG_FILE = os.path.join(os.getcwd(), "logs/data.json")
 
 _log_lock = Lock()
-MAX_LOG_COUNT = 5
+MAX_LOG_COUNT = 100
 
 
 def _read_logs():
