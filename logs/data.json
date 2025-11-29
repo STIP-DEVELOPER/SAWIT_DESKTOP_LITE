@@ -28,5 +28,329 @@
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:32",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:32",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-0001: [Errno 2] No such file or directory: '/dev/cu.usbserial-0001'"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:32",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:43",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:48",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'large_tree', 'CONFIDENCE': 0.6, 'BAUDRATE': 9600, 'FPS': 10, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200}"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:52",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:52",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:52",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:58:53",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:03",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:03",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:03",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:04",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:04",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:04",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:04",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:04",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:04",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T20:59:05",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:57",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:57",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:57",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:58",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:58",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:58",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:58",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:27:59",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:28:00",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:28:00",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:28:00",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:28:02",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:35",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:35",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:35",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:36",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:38",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:38",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:38",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:39",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:43",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:43",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:43",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:49",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'large_tree', 'CONFIDENCE': 0.6, 'BAUDRATE': 9600, 'FPS': 10, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200}"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:53",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:55",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:55",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:38:55",
+        "level": "INFO",
+        "source": "TFLUNA_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-11-29T21:39:11",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
     }
 ]

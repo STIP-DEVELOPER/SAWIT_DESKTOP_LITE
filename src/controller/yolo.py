@@ -148,7 +148,10 @@ class YOLOThreadController(QThread):
 
             rgb = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
             h, w, ch = rgb.shape
-            qt_image = QImage(rgb.data, w, h, ch * w, QImage.Format_RGB888)
+            bytes_per_line = ch * w
+            qt_image = QImage(
+                rgb.tobytes(), w, h, bytes_per_line, QImage.Format_RGB888
+            ).copy()
             self.frame_ready.emit(qt_image)
 
             if do_detect and results[0].boxes:
@@ -166,7 +169,8 @@ class YOLOThreadController(QThread):
 
     def stop(self):
         self.running = False
-        if self.cap:
+        if self.cap and self.cap.isOpened():
             self.cap.release()
         self.quit()
-        self.wait(200)
+        self.wait(1000)
+        cv2.waitKey(1)
