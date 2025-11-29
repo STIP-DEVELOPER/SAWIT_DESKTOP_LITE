@@ -1,0 +1,15 @@
+[Unit]
+Description=SawitApp UI
+After=graphical.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/Documents/SawitApp
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+Environment=QT_QPA_PLATFORM=xcb
+ExecStart=/usr/bin/python3 /home/pi/Documents/SawitApp/src/main.py
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target
