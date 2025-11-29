@@ -80,9 +80,6 @@ class InferencePage(QWidget):
     def toggle_start_stop(self):
         """Toggle inference start/stop state."""
 
-        if self.is_running and self.yolo_thread and self.yolo_thread.isRunning():
-            return
-
         self.is_running = not self.is_running
 
         if self.is_running:
