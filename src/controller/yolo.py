@@ -1,3 +1,4 @@
+import os
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtGui import QImage
 import cv2
@@ -40,7 +41,9 @@ class YOLOThreadController(QThread):
         self.model = YOLO(self._get_model_path(self.model_name))
 
     def _get_model_path(self, model_name):
-        return f"models/{model_name}_ncnn_model"
+        MODEL_PATH = os.path.join(os.getcwd(), f"models/{model_name}_ncnn_model")
+        print(f"[YOLOThread] Model path: {MODEL_PATH}")
+        return MODEL_PATH
 
     def _init_serial_controller(self):
         if self.serial_port:

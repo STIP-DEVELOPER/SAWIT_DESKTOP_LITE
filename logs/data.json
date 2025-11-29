@@ -1,32 +1,32 @@
 [
     {
-        "timestamp": "2025-11-28T20:53:29",
+        "timestamp": "2025-11-29T09:50:38",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
     },
     {
-        "timestamp": "2025-11-28T20:53:30",
+        "timestamp": "2025-11-29T09:51:43",
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference started"
     },
     {
-        "timestamp": "2025-11-28T20:53:30",
+        "timestamp": "2025-11-29T09:51:43",
         "level": "INFO",
         "source": "TFLUNA_CONTROLLER",
         "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
     },
     {
-        "timestamp": "2025-11-28T20:53:30",
+        "timestamp": "2025-11-29T09:51:43",
         "level": "INFO",
         "source": "TFLUNA_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-0001: [Errno 2] No such file or directory: '/dev/cu.usbserial-0001'"
     },
     {
-        "timestamp": "2025-11-28T21:01:18",
+        "timestamp": "2025-11-29T09:51:53",
         "level": "INFO",
-        "source": "TFLUNA_CONTROLLER",
-        "message": "[Lidar] Serial error: read failed: [Errno 6] Device not configured"
+        "source": "UI_HOME",
+        "message": "Inference stopped"
     }
 ]

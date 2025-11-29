@@ -3,7 +3,9 @@ import os
 from datetime import datetime
 from threading import Lock
 
-LOG_FILE = os.path.join(os.getcwd(), "./logs/data.json")
+LOG_FILE = os.path.join(os.getcwd(), "logs/data.json")
+print("Log file path:", LOG_FILE)
+
 _log_lock = Lock()
 MAX_LOG_COUNT = 5
 
