@@ -4,11 +4,14 @@ After=graphical.target
 
 [Service]
 User=pi
-WorkingDirectory=/home/pi/Documents/SawitApp
-Environment=DISPLAY=:0
-Environment=XAUTHORITY=/home/pi/.Xauthority
+Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=QT_QPA_PLATFORM=xcb
+Environment=QT_PLUGIN_PATH=/usr/lib/arm-linux-gnueabihf/qt5/plugins
+Environment=LD_LIBRARY_PATH=/usr/lib/arm-linux-gnueabihf
+Environment=PYTHONPATH=/home/pi/Documents/SawitApp
+WorkingDirectory=/home/pi/Documents/SawitApp
 ExecStart=/usr/bin/python3 /home/pi/Documents/SawitApp/src/main.py
+
 Restart=on-failure
 
 [Install]

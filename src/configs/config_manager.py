@@ -3,11 +3,11 @@ import os
 
 
 class ConfigManager:
-    def __init__(self, file_path="./src/configs/config.json", autosave=True):
-        self.file_path = file_path
+    def __init__(self, autosave=True):
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        self.file_path = os.path.join(BASE_DIR, "config.json")
         self.autosave = autosave
         self.config = {}
-
         self._load()
 
     def _load(self):

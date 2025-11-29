@@ -1,3 +1,12 @@
+import os
+
+# Force Qt to use system plugin
+os.environ.pop("QT_PLUGIN_PATH", None)
+os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = (
+    "/usr/lib/arm-linux-gnueabihf/qt5/plugins/platforms"
+)
+os.environ["QT_QPA_PLATFORM"] = "xcb"
+
 import sys
 from PyQt5.QtWidgets import QApplication
 
