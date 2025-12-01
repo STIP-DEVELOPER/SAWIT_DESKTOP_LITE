@@ -2,6 +2,9 @@ import serial
 from PyQt5.QtCore import QThread, pyqtSignal
 import time
 
+from enums.log import LogLevel, LogSource
+from utils.logger import add_log
+
 
 class SerialController(QThread):
     data_received = pyqtSignal(str)
@@ -57,6 +60,11 @@ class SerialController(QThread):
 
             except Exception as e:
                 print(f"[Serial] Failed to read data: {e}")
+                add_log(
+                    LogLevel.ERROR.value,
+                    LogSource.SERIAL_CONTROLLER.value,
+                    f"Serial read error: {str(e)}",
+                )
 
     def send(self, data):
         """Send data to serial"""
@@ -66,10 +74,20 @@ class SerialController(QThread):
                 print(f"[Serial] Sent: {data}")
             except Exception as e:
                 print(f"[Serial] Failed to send: {e}")
+                add_log(
+                    LogLevel.ERROR.value,
+                    LogSource.SERIAL_CONTROLLER.value,
+                    f"Serial send error: {str(e)}",
+                )
 
     def _handle_serial_error(self, error):
         """Handle serial errors and emit connection_lost"""
         print(f"[Serial] Error: {error}")
+        add_log(
+            LogLevel.ERROR.value,
+            LogSource.SERIAL_CONTROLLER.value,
+            f"{str(error)}",
+        )
         self.connection_lost.emit()
 
     def _cleanup_serial(self):

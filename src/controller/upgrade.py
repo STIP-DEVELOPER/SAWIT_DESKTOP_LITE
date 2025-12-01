@@ -1,6 +1,8 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 
 from controller.gdrive import GoogleDriveUpgrader
+from enums.log import LogLevel, LogSource
+from utils.logger import add_log
 
 
 class UpgradeThread(QThread):
@@ -32,5 +34,16 @@ class UpgradeThread(QThread):
             self.log("Cleaning up temp...")
             upgrader.cleanup()
 
+            add_log(
+                LogLevel.INFO.value,
+                LogSource.UI_UPGRADER.value,
+                f"Upgrade completed successfully",
+            )
+
         except Exception as e:
+            add_log(
+                LogLevel.ERROR.value,
+                LogSource.UI_UPGRADER.value,
+                f"Upgrade error: {str(e)}",
+            )
             self.log(f"❌ ERROR: {str(e)}")

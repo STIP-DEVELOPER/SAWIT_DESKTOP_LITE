@@ -71,7 +71,7 @@ class LidarController(QThread):
         except serial.SerialException as e:
             self.connection_lost.emit()
             msg = f"[Lidar] Serial error: {e}"
-            add_log(LogLevel.INFO.value, LogSource.TFLUNA_CONTROLLER.value, msg)
+            add_log(LogLevel.INFO.value, LogSource.LIDAR_CONTROLLER.value, msg)
 
         finally:
             self._cleanup_serial()

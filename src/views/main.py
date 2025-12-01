@@ -15,6 +15,9 @@ from utils.icon import get_icon
 
 from views.dashboard import DashboardPage
 from views.inference import InferencePage
+from views.initialize import InitializePage
+from views.location import LocationPage
+from views.troubleshooting import TroubleshootingPage
 from views.logger import LoggerPage
 from views.setting import SettingsPage
 from views.upgrade import UpgradePage
@@ -28,10 +31,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Sawit Desktop")
         self._set_responsive_geometry()
 
-        # STACK (halaman utama)
         self.stack = QStackedWidget()
 
-        # HEADER ---------------------------------------------------------
         self.header_widget = QWidget()
 
         self.header_layout = QHBoxLayout()
@@ -44,13 +45,14 @@ class MainWindow(QMainWindow):
             QWidget {
                 padding-top: 5px;
                 padding-bottom: 5px;
+                background-color: #1A1A1A;
             }
         """
         )
 
         # Back
         self.back_btn = Button(text="Back", icon_path=get_icon("arrow-left.png"))
-        self.back_btn.clicked.connect(lambda: self.stack.setCurrentIndex(0))
+        self.back_btn.clicked.connect(lambda: self.stack.setCurrentIndex(1))
         self.back_btn.setVisible(False)
 
         # Title
@@ -78,7 +80,6 @@ class MainWindow(QMainWindow):
         self.header_layout.addWidget(self.exit_btn, alignment=Qt.AlignRight)
         self.header_widget.setLayout(self.header_layout)
 
-        # MAIN LAYOUT ----------------------------------------------------
         main_widget = QWidget()
         main_layout = QVBoxLayout()
         main_layout.setContentsMargins(0, 0, 0, 0)
@@ -90,7 +91,6 @@ class MainWindow(QMainWindow):
         main_widget.setLayout(main_layout)
         self.setCentralWidget(main_widget)
 
-        # CREATE PAGES ---------------------------------------------------
         self._load_pages()
 
         self._update_header()
@@ -99,9 +99,6 @@ class MainWindow(QMainWindow):
     def _set_responsive_geometry(self):
         self.showFullScreen()
 
-    # ------------------------------------------------------------------
-    # WRAP PAGE WITH SCROLL AREA
-    # ------------------------------------------------------------------
     def _wrap_scroll(self, widget):
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
@@ -112,27 +109,45 @@ class MainWindow(QMainWindow):
         return scroll
 
     def _load_pages(self):
+        initialize = self._wrap_scroll(InitializePage(parent=self))
         dashboard = self._wrap_scroll(DashboardPage(parent=self))
         inference = self._wrap_scroll(InferencePage(parent=self))
         logs = self._wrap_scroll(LoggerPage(parent=self))
         settings = self._wrap_scroll(SettingsPage(parent=self))
         upgrade = self._wrap_scroll(UpgradePage(parent=self))
+        location = self._wrap_scroll(LocationPage(parent=self))
+        troubleshoot = self._wrap_scroll(TroubleshootingPage(parent=self))
 
-        self.stack.addWidget(dashboard)  # 0
-        self.stack.addWidget(inference)  # 1
-        self.stack.addWidget(logs)  # 2
-        self.stack.addWidget(settings)  # 3
-        self.stack.addWidget(upgrade)  # 4
+        self.stack.addWidget(initialize)  # 0
+        self.stack.addWidget(dashboard)  # 1
+        self.stack.addWidget(inference)  # 2
+        self.stack.addWidget(logs)  # 3
+        self.stack.addWidget(settings)  # 4
+        self.stack.addWidget(upgrade)  # 5
+        self.stack.addWidget(location)  # 6
+        self.stack.addWidget(troubleshoot)  # 7
 
-    # -----------------------------------------------------------
     def _update_header(self):
         index = self.stack.currentIndex()
-        self.back_btn.setVisible(index != 0)
 
-        titles = ["Dashboard", "Inference", "Logs", "Settings", "Upgrade"]
+        if index == 0:
+            self.header_widget.hide()
+        else:
+            self.header_widget.show()
+            self.back_btn.setVisible(index != 1)
+
+        titles = [
+            "Initialize",
+            "Dashboard",
+            "Inference",
+            "Logs",
+            "Settings",
+            "Upgrade",
+            "Location",
+            "Troubleshooting",
+        ]
         self.title_label.setText(titles[index])
 
-    # -----------------------------------------------------------
     def _confirm_exit(self):
         modal = Modal(title="Apakah yakin anda mau keluar?", on_ok=self.close)
         modal.exec_()

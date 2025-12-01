@@ -27,6 +27,7 @@ class YOLOThreadController(QThread):
     def _init_configs(self):
         self.config_manager = ConfigManager()
         self.configs = self.config_manager.get_all()
+
         self.camera_index = self.configs.get("CAMERA_INDEX", 0)
         self.model_name = self.configs.get("YOLO_MODEL", "medium_tree")
         self.conf_threshold = self.configs.get("CONFIDENCE", 0.6)
@@ -41,7 +42,7 @@ class YOLOThreadController(QThread):
         self.model = YOLO(self._get_model_path(self.model_name))
 
     def _get_model_path(self, model_name):
-        MODEL_PATH = os.path.join(os.getcwd(), f"models/{model_name}_ncnn_model")
+        MODEL_PATH = os.path.join(os.getcwd(), f"models/{model_name}")
         print(f"[YOLOThread] Model path: {MODEL_PATH}")
         return MODEL_PATH
 
@@ -114,7 +115,7 @@ class YOLOThreadController(QThread):
         source = (
             self.camera_index
             if inferance_type == "webcam"
-            else "videos/sample-large-1.MOV"
+            else "videos/sample-large-2.MOV"
         )
 
         self.cap = cv2.VideoCapture(source)
@@ -126,51 +127,56 @@ class YOLOThreadController(QThread):
 
     def run(self):
         self.running = True
+        last_annotated = None
 
         while self.running:
             ret, frame = self.cap.read()
-            if not ret:
+
+            if not ret or frame is None:
+                if last_annotated is not None:
+                    annotated = last_annotated
+                else:
+                    continue
+            else:
+                self.counter += 1
+                do_detect = self.counter % max(1, self.frame_skip) == 0
+
+                if do_detect:
+                    results = self.model(
+                        frame,
+                        imgsz=640,
+                        verbose=False,
+                        device="cpu",
+                        half=True,
+                        conf=self.conf_threshold,
+                    )
+                    annotated = results[0].plot()
+                    last_annotated = annotated.copy()
+
+                    if results[0].boxes:
+                        cls = int(results[0].boxes[0].cls)
+                        name = results[0].names[cls]
+                        conf = float(results[0].boxes[0].conf)
+                        box = results[0].boxes[0]
+                        position = self.get_object_position(frame.shape[1], box)
+                        self.detection_ready.emit(f"{name} ({conf:.2f}) | {position}")
+                        if self._is_distance_valid(position):
+                            self._send_serial_message(position)
+                else:
+                    annotated = last_annotated if last_annotated is not None else frame
+
+            if annotated is None or annotated.size == 0:
                 continue
 
-            self.counter += 1
-            do_detect = self.counter % self.frame_skip == 0
-
-            if do_detect:
-                results = self.model.predict(
-                    frame,
-                    verbose=False,
-                    imgsz=640,
-                    device="cpu",
-                )
-                annotated = results[0].plot()
-            else:
-                annotated = frame
-
             rgb = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
-            h, w, ch = rgb.shape
-            bytes_per_line = ch * w
-            qt_image = QImage(
-                rgb.tobytes(), w, h, bytes_per_line, QImage.Format_RGB888
-            ).copy()
+            h, w = rgb.shape[:2]
+            qt_image = QImage(rgb.data, w, h, w * 3, QImage.Format_RGB888).copy()
             self.frame_ready.emit(qt_image)
-
-            if do_detect and results[0].boxes:
-                cls = int(results[0].boxes[0].cls)
-                name = results[0].names[cls]
-                conf = float(results[0].boxes[0].conf)
-                box = results[0].boxes[0]
-                position = self.get_object_position(frame.shape[1], box)
-
-                self.detection_ready.emit(f"{name} ({conf:.2f}) | {position}")
-
-                if self._is_distance_valid(position):
-                    print(f"======send to serial======={position}=======")
-                    self._send_serial_message(position)
 
     def stop(self):
         self.running = False
         if self.cap and self.cap.isOpened():
             self.cap.release()
         self.quit()
-        self.wait(1000)
+        self.wait(2000)
         cv2.waitKey(1)

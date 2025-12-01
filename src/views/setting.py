@@ -1,3 +1,4 @@
+import os
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QWidget,
@@ -30,6 +31,20 @@ def detect_camera_indexes(max_test=5):
     return indexes
 
 
+def get_available_models():
+    models_path = os.path.join(os.getcwd(), "models")
+
+    if not os.path.exists(models_path):
+        return ["No models found"]
+    return sorted(
+        [
+            d
+            for d in os.listdir(models_path)
+            if os.path.isdir(os.path.join(models_path, d)) and not d.startswith("__")
+        ]
+    )
+
+
 class SettingsPage(QWidget):
 
     def __init__(self, parent=None):
@@ -48,7 +63,7 @@ class SettingsPage(QWidget):
         detected_cameras = detect_camera_indexes()
 
         if not detected_cameras:
-            detected_cameras = ["0", "1"]  # fallback
+            detected_cameras = []
 
         usb_ports = get_serial_ports()
         usb_ports.append("None")
@@ -60,13 +75,7 @@ class SettingsPage(QWidget):
             items=detected_cameras,
         )
 
-        self.select_model = Dropdown(
-            items=[
-                "small_tree",
-                "medium_tree",
-                "large_tree",
-            ],
-        )
+        self.select_model = Dropdown(items=get_available_models())
 
         self.select_port = Dropdown(
             items=usb_ports,

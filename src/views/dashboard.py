@@ -46,12 +46,14 @@ class DashboardCard(QFrame):
         # Icon
         if icon_path:
             icon_label = QLabel()
+            icon_label.setStyleSheet("background: #1A1A1A;")
             icon_label.setPixmap(get_icon(icon_path).pixmap(48, 48))
             icon_label.setAlignment(Qt.AlignCenter)
             layout.addWidget(icon_label)
 
         # Title
         title_label = QLabel(title)
+        title_label.setStyleSheet("background: #1A1A1A;")
         title_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(title_label)
 
@@ -80,18 +82,24 @@ class DashboardPage(QWidget):
         card_logs = DashboardCard("Logs", "logs.png")
         card_settings = DashboardCard("Settings", "settings.png")
         card_upgrade = DashboardCard("Upgrade", "upgrade.png")
+        card_location = DashboardCard("Location", "location.png")
+        card_troubleshoot = DashboardCard("Troubleshooting", "tool.png")
 
         grid.addWidget(card_inference, 0, 0)
-        grid.addWidget(card_logs, 0, 1)
+        grid.addWidget(card_troubleshoot, 0, 1)
+        grid.addWidget(card_location, 0, 2)
         grid.addWidget(card_settings, 1, 0)
-        grid.addWidget(card_upgrade, 1, 1)
-
+        grid.addWidget(card_logs, 1, 1)
+        grid.addWidget(card_upgrade, 1, 2)
         layout.addLayout(grid)
+
         self.setLayout(layout)
 
         self.setStyleSheet("background-color: #0D0D0D;")
 
-        card_inference.clicked.connect(lambda: self.parent.stack.setCurrentIndex(1))
-        card_logs.clicked.connect(lambda: self.parent.stack.setCurrentIndex(2))
-        card_settings.clicked.connect(lambda: self.parent.stack.setCurrentIndex(3))
-        card_upgrade.clicked.connect(lambda: self.parent.stack.setCurrentIndex(4))
+        card_inference.clicked.connect(lambda: self.parent.stack.setCurrentIndex(2))
+        card_logs.clicked.connect(lambda: self.parent.stack.setCurrentIndex(3))
+        card_settings.clicked.connect(lambda: self.parent.stack.setCurrentIndex(4))
+        card_upgrade.clicked.connect(lambda: self.parent.stack.setCurrentIndex(5))
+        card_location.clicked.connect(lambda: self.parent.stack.setCurrentIndex(6))
+        card_troubleshoot.clicked.connect(lambda: self.parent.stack.setCurrentIndex(7))
