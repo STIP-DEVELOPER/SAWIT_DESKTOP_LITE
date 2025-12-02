@@ -1,7 +1,7 @@
 {
     "SERIAL_PORT": "None",
     "CAMERA_INDEX": 0,
-    "YOLO_MODEL": "large_tree_ncnn_model",
+    "YOLO_MODEL": "small_tree_ncnn_model",
     "CONFIDENCE": 0.8,
     "BAUDRATE": 9600,
     "FPS": 5,

@@ -138,7 +138,7 @@ class MainWindow(QMainWindow):
 
         titles = [
             "Initialize",
-            "Dashboard",
+            "AITRI",
             "Inference",
             "Logs",
             "Settings",
