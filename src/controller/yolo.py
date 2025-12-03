@@ -115,7 +115,7 @@ class YOLOThreadController(QThread):
         source = (
             self.camera_index
             if inferance_type == "webcam"
-            else "videos/sample-small.MOV"
+            else "videos/sample-large-1.MOV"
         )
 
         self.cap = cv2.VideoCapture(source)
