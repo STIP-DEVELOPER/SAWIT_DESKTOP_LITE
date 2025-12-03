@@ -1,12 +1,6 @@
 [
     {
         "timestamp": "2025-12-01T00:07:29",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-01T00:07:29",
         "level": "INFO",
         "source": "LIDAR_CONTROLLER",
         "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
@@ -598,5 +592,11 @@
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-03T13:13:53",
+        "level": "ERROR",
+        "source": "UI_UPGRADER",
+        "message": "Upgrade error: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /drive/folders/19usAPzpfeNHq4c9mxSAJZQ0M7g0AlNHo?hl=en (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x27be92200>: Failed to resolve 'drive.google.com' ([Errno 8] nodename nor servname provided, or not known)\"))"
     }
 ]

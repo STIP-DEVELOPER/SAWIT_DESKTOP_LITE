@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 from utils.icon import get_icon
 from ui.chat_bubble import ChatBubble
 from ui.feature_button import FeatureButton
-from services.ollama_service import OllamaStreamThread
+from services.ollama_service import OllamaMCPThread
 
 
 class DashboardPage(QWidget):
@@ -133,7 +133,7 @@ class DashboardPage(QWidget):
         self.messages.append({"role": "user", "content": text})
 
         # Kirim ke Ollama
-        self.thread = OllamaStreamThread(self.messages)
+        self.thread = OllamaMCPThread(self.messages)
         self.thread.token.connect(self._append_token)
         self.thread.done.connect(self._finish_reply)
         self.thread.start()

@@ -1,38 +1,81 @@
-import subprocess
-import threading
+import json
 from PyQt5.QtCore import QThread, pyqtSignal
 import ollama
 
 
-def start_ollama_server():
-    """Jalankan ollama serve di background (sekali saja)"""
-    subprocess.Popen(
-        ["ollama", "serve"],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+def nyalakan_led():
+    """Tool: Hitung a + b + 1"""
+    print("hotungsd")
+    return "LED dinyalakan!"
 
 
-threading.Thread(target=start_ollama_server, daemon=True).start()
+TOOLS = {
+    "nyalakan_led": nyalakan_led,
+}
 
 
-class OllamaStreamThread(QThread):
+class OllamaMCPThread(QThread):
     token = pyqtSignal(str)
     done = pyqtSignal(str)
 
-    def __init__(self, messages, model="aitri-sawit"):
+    def __init__(self, messages: list):
         super().__init__()
         self.messages = messages[:]
-        self.model = model
 
     def run(self):
         full_response = ""
-        try:
-            stream = ollama.chat(model=self.model, messages=self.messages, stream=True)
-            for chunk in stream:
-                if content := chunk["message"].get("content"):
-                    full_response += content
-                    self.token.emit(content)
-            self.done.emit(full_response)
-        except Exception as e:
-            self.done.emit(f"[ERROR] {e}")
+
+        while True:
+            try:
+                stream = ollama.chat(
+                    model="aitri-sawit", messages=self.messages, stream=True
+                )
+
+                print(f"steam={stream}")
+
+                response_text = ""
+                for chunk in stream:
+                    if content := chunk["message"].get("content"):
+                        response_text += content
+                        full_response += content
+                        self.token.emit(content)
+
+                print(f"response text = {response_text}")
+
+                if "{" in response_text and "}" in response_text:
+                    try:
+                        start = response_text.index("{")
+                        end = response_text.rindex("}") + 1
+                        json_str = response_text[start:end]
+                        tool_call = json.loads(json_str)
+
+                        tool_name = tool_call.get("tool")
+
+                        print(f"tool name = {tool_name}")
+                        if tool_name in TOOLS:
+                            func = TOOLS[tool_name]
+                            args = tool_call.get("arguments", {})
+                            result = func(**args)
+
+                            self.token.emit(
+                                f"\nMenghitung {tool_name.replace('_', ' ')}... {result}\n"
+                            )
+
+                            self.messages.append(
+                                {"role": "assistant", "content": response_text}
+                            )
+                            self.messages.append(
+                                {"role": "tool", "content": str(result)}
+                            )
+
+                            full_response = ""
+                            continue
+                    except Exception:
+                        pass
+                break
+
+            except Exception as e:
+                self.done.emit(f"[ERROR] {e}")
+                return
+
+        self.done.emit(full_response.strip())

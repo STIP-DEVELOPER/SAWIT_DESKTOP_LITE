@@ -1,23 +1,13 @@
 import serial
 import pynmea2
 
-ser = serial.Serial("/dev/cu.usbserial-0001", 9600, timeout=1)
+ser = serial.Serial("/dev/cu.usbmodem14201", baudrate=9600, timeout=1)
 
 while True:
-    try:
-        line = ser.readline().decode("ascii", errors="ignore")
-        print(line)
-        if line.startswith("$GPRMC"):
-            msg = pynmea2.parse(line)
-            print("Lat:", msg.latitude)
-            print("Lon:", msg.longitude)
-    except:
-        pass
-
-
-# import serial
-
-# ser = serial.Serial("/dev/cu.usbserial-0001", 9600)
-
-# while True:
-#     print(ser.readline().decode(errors="ignore").strip())
+    line = ser.readline().decode("ascii", errors="replace").strip()
+    if line.startswith("$GPGGA") or line.startswith("$GNGGA"):
+        msg = pynmea2.parse(line)
+        if msg.latitude and msg.latitude != 0:
+            print(f"Lat: {msg.latitude:.6f}, Lon: {msg.longitude:.6f}")
+        else:
+            print("Menunggu fix GPS...")
