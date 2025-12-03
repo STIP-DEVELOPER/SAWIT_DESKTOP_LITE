@@ -2,9 +2,22 @@ numpy<2
 pyserial>=3.5
 opencv-python>=4.11.0.86
 ultralytics>=8.3.229
-torch==2.2.2
-ncnn>=1.0.20250916
-gdown>=5.2.0
 
-# PyQt5 tidak boleh di-install oleh pip untuk ARM64
-PyQt5; platform_machine != "aarch64"
+# ==== MacOS ====
+pyqt5>=5.15.11; sys_platform == "darwin"
+pyqt5-qt5==5.15.18; sys_platform == "darwin"
+
+# ==== Linux / Jetson / aarch64 ====
+# PyQt5 tidak di-install oleh pip — gunakan apt
+# Hanya torch yang berbeda versi untuk setiap platform
+torch==2.2.2; sys_platform == "linux" and platform_machine == "aarch64"
+
+# ==== MacOS Torch ====
+torch==2.0.1; sys_platform == "darwin" and platform_machine == "x86_64"
+torch==2.9.1; sys_platform == "darwin" and platform_machine == "arm64"
+
+# ==== Others ====
+gdown>=5.2.0
+pynmea2>=1.19.0
+pyqtwebengine>=5.15.7
+ollama>=0.6.1
