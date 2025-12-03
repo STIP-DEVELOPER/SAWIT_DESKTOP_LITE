@@ -70,7 +70,7 @@ def download_models():
 
 
 def download_sample_video():
-    FOLDER_ID = "1gokdUNV1NgoYOjzWjnkxMDrZ_9KCsa0c"
+    FOLDER_ID = "1KzujBiNkU-P-qVjAffCcuBgBxmB0a9Lq"
     downloader = GoogleDriveDownloader(folder_id=FOLDER_ID, models_dir="videos")
     downloader.run()
 
