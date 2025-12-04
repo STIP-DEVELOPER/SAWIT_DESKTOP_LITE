@@ -111,7 +111,7 @@ class YOLOThreadController(QThread):
             self.serial_controller.send(message)
 
     def setup(self):
-        inferance_type = "videos"
+        inferance_type = "webcam"
         source = (
             self.camera_index
             if inferance_type == "webcam"
@@ -119,6 +119,10 @@ class YOLOThreadController(QThread):
         )
 
         self.cap = cv2.VideoCapture(source)
+
+        if not self.cap.isOpened():
+            raise RuntimeError(f"Failed to open camera at index {self.camera_index}")
+
         self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
         self.cap.set(cv2.CAP_PROP_FPS, 30)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -130,36 +134,57 @@ class YOLOThreadController(QThread):
         last_annotated = None
 
         while self.running:
+            if self.cap is None:
+                break
+
             ret, frame = self.cap.read()
 
             if not ret or frame is None:
-                if last_annotated is not None:
-                    annotated = last_annotated
-                else:
-                    continue
+                QThread.msleep(10)
+                continue
+
             else:
                 self.counter += 1
                 do_detect = self.counter % max(1, self.frame_skip) == 0
 
                 if do_detect:
+                    if not self.running:
+                        break
+
                     results = self.model(
                         frame,
                         imgsz=640,
                         verbose=False,
-                        device="cpu",
-                        half=True,
                         conf=self.conf_threshold,
                     )
-                    annotated = results[0].plot()
-                    last_annotated = annotated.copy()
 
-                    if results[0].boxes:
+                    if not self.running:
+                        break
+
+                    annotated = results[0].plot()
+                    last_annotated = annotated
+
+                    if results[0].boxes is not None and len(results[0].boxes) > 0:
                         cls = int(results[0].boxes[0].cls)
                         name = results[0].names[cls]
                         conf = float(results[0].boxes[0].conf)
                         box = results[0].boxes[0]
                         position = self.get_object_position(frame.shape[1], box)
-                        self.detection_ready.emit(f"{name} ({conf:.2f}) | {position}")
+
+                        message = ""
+
+                        if position == "LEFT":
+                            message = (
+                                f"Left |{name}| {conf:.2f}| {self.left_distance} cm"
+                            )
+
+                        if position == "RIGHT":
+                            message = (
+                                f"Right |{name}|{conf:.2f}|{self.right_distance}cm"
+                            )
+
+                        self.detection_ready.emit(message)
+
                         if self._is_distance_valid(position):
                             self._send_serial_message(position)
                 else:
@@ -170,13 +195,36 @@ class YOLOThreadController(QThread):
 
             rgb = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
             h, w = rgb.shape[:2]
+
+            if not self.running:
+                break
+
             qt_image = QImage(rgb.data, w, h, w * 3, QImage.Format_RGB888).copy()
-            self.frame_ready.emit(qt_image)
+
+            if not self.running:
+                break
+
+            try:
+                self.frame_ready.emit(qt_image)
+            except RuntimeError:
+                break
 
     def stop(self):
+        print("[YOLOThread] Stop requested")
+
         self.running = False
-        if self.cap and self.cap.isOpened():
-            self.cap.release()
-        self.quit()
-        self.wait(2000)
-        cv2.waitKey(1)
+
+        # Tunggu loop selesai
+        if self.isRunning():
+            self.wait()
+
+        # Cleanup camera
+        try:
+            if self.cap is not None:
+                self.cap.release()
+        except Exception as e:
+            print("[YOLOThread] cap release error:", e)
+
+        self.cap = None
+
+        print("[YOLOThread] Fully stopped")

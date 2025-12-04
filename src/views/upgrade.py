@@ -66,11 +66,9 @@ class UpgradePage(QWidget):
         self.log_box.setReadOnly(True)
         self.log_box.setStyleSheet(
             f"""
-            background-color: {colors.WHITE};
-            border: 1px solid {colors.BORDER_COLOR};
             border-radius: 8px;
             padding: 8px;
-            color: {colors.TEXT_PRIMARY};
+            color: white;
             font-size: 13px;
             """
         )

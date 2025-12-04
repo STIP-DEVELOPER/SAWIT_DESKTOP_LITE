@@ -148,6 +148,10 @@ class InferencePage(QWidget):
         try:
             self.yolo_thread = YOLOThreadController()
 
+            if self.yolo_thread and self.yolo_thread.isRunning():
+                self.yolo_thread.stop()
+                self.yolo_thread.wait(3000)
+
             self.yolo_thread.frame_ready.connect(self.display_frame)
             self.yolo_thread.detection_ready.connect(self._append_log)
 
@@ -168,7 +172,7 @@ class InferencePage(QWidget):
 
         if self.yolo_thread and self.yolo_thread.isRunning():
             self.yolo_thread.stop()
-            self.yolo_thread.wait(1000)
+            self.yolo_thread.wait(3000)
             self.yolo_thread = None
             self.original_frame_size = None
 
