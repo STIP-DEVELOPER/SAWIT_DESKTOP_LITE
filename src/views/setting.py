@@ -107,6 +107,14 @@ class SettingsPage(QWidget):
             items=["100", "150", "200", "250", "300", "350", "400", "500"],
         )
 
+        self.select_gps_port = Dropdown(
+            items=usb_ports,
+        )
+
+        self.select_gps_interval = Dropdown(
+            items=["10 menit", "20 menit", "30 menit", "60 menit"],
+        )
+
         camera_header = QLabel("Camera")
         camera_header.setStyleSheet("font-weight: bold; font-size: 14px;")
         grid.addWidget(camera_header, 0, 0, 1, 4, alignment=Qt.AlignLeft)
@@ -152,6 +160,20 @@ class SettingsPage(QWidget):
         grid.addWidget(self.select_lidar_right, 7, 3)
 
         grid.addWidget(QLabel("Lidar Threshold:"), 8, 0, alignment=Qt.AlignRight)
+        grid.addWidget(self.select_lidar_threshold, 8, 1)
+
+        gps_header = QLabel("GPS")
+        gps_header.setStyleSheet(
+            "font-weight: bold; font-size: 14px; margin-top: 10px;"
+        )
+        grid.addWidget(gps_header, 9, 0, 1, 4)
+
+        grid.addWidget(QLabel("GPS Port:"), 10, 0, alignment=Qt.AlignRight)
+        grid.addWidget(self.select_gps_port, 10, 1)
+
+        grid.addWidget(QLabel("GPS Interval:"), 10, 2, alignment=Qt.AlignRight)
+        grid.addWidget(self.select_gps_interval, 10, 3)
+
         grid.addWidget(self.select_lidar_threshold, 8, 1)
 
         self.save_button = Button(
@@ -200,6 +222,16 @@ class SettingsPage(QWidget):
         if "LIDAR_THRESHOLD" in cfg:
             self.select_lidar_threshold.set_value(str(cfg["LIDAR_THRESHOLD"]))
 
+        if "GPS_PORT" in cfg:
+            self.select_gps_port.set_value(cfg["GPS_PORT"])
+        else:
+            self.select_gps_port.set_value("None")
+
+        if "GPS_LOG_INTERVAL" in cfg:
+            self.select_gps_interval.set_value(cfg["GPS_LOG_INTERVAL"])
+        else:
+            self.select_gps_interval.set_value("30 menit")
+
     def _save_settings(self):
         try:
             camera_index = int(self.select_camera.get_value())
@@ -212,6 +244,13 @@ class SettingsPage(QWidget):
             lidar_right_port = self.select_lidar_right.get_value()
             lidar_threshold = int(self.select_lidar_threshold.get_value())
 
+            gps_port = self.select_gps_port.get_value()
+            if gps_port == "None":
+                gps_port = ""
+
+            gps_interval_text = self.select_gps_interval.get_value()
+            gps_interval_minutes = int(gps_interval_text.split()[0])
+
             self.configs.set_config("CAMERA_INDEX", camera_index)
             self.configs.set_config("YOLO_MODEL", model)
             self.configs.set_config("SERIAL_PORT", serial_port)
@@ -221,6 +260,10 @@ class SettingsPage(QWidget):
             self.configs.set_config("LIDAR_LEFT_PORT", lidar_left_port)
             self.configs.set_config("LIDAR_RIGHT_PORT", lidar_right_port)
             self.configs.set_config("LIDAR_THRESHOLD", lidar_threshold)
+
+            self.configs.set_config("GPS_PORT", gps_port)
+            self.configs.set_config("GPS_LOG_INTERVAL", gps_interval_text)
+            self.configs.set_config("GPS_LOG_INTERVAL_MINUTES", gps_interval_minutes)
 
             QMessageBox.information(self, "Successful", "Berhasil disimpan")
 

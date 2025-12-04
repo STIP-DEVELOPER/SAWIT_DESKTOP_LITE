@@ -7,5 +7,8 @@
     "FPS": 5,
     "LIDAR_LEFT_PORT": "None",
     "LIDAR_RIGHT_PORT": "None",
-    "LIDAR_THRESHOLD": 200
+    "LIDAR_THRESHOLD": 200,
+    "GPS_PORT": "/dev/cu.usbmodem14101",
+    "GPS_LOG_INTERVAL": "60 menit",
+    "GPS_LOG_INTERVAL_MINUTES": 60
 }

@@ -1,29 +1,5 @@
 [
     {
-        "timestamp": "2025-12-04T21:06:22",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:22",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:22",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:23",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
         "timestamp": "2025-12-04T21:06:25",
         "level": "INFO",
         "source": "UI_HOME",
@@ -298,5 +274,29 @@
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-04T23:18:22",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200, 'GPS_PORT': '', 'GPS_LOG_INTERVAL': '20 menit', 'GPS_LOG_INTERVAL_MINUTES': 20}"
+    },
+    {
+        "timestamp": "2025-12-04T23:22:00",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200, 'GPS_PORT': '/dev/cu.usbmodem14101', 'GPS_LOG_INTERVAL': '20 menit', 'GPS_LOG_INTERVAL_MINUTES': 20}"
+    },
+    {
+        "timestamp": "2025-12-04T23:25:36",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200, 'GPS_PORT': '/dev/cu.usbmodem14101', 'GPS_LOG_INTERVAL': '20 menit', 'GPS_LOG_INTERVAL_MINUTES': 20}"
+    },
+    {
+        "timestamp": "2025-12-04T23:26:01",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200, 'GPS_PORT': '/dev/cu.usbmodem14101', 'GPS_LOG_INTERVAL': '60 menit', 'GPS_LOG_INTERVAL_MINUTES': 60}"
     }
 ]

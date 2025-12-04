@@ -4,28 +4,92 @@ from PyQt5.QtCore import QUrl, pyqtSignal, QObject, QThread
 import pynmea2
 import serial
 
+from configs.config_manager import ConfigManager
+
+import requests
+
+import time
+
 
 class GPSWorker(QObject):
     position_updated = pyqtSignal(float, float)
 
-    def __init__(self, port="/dev/cu.usbmodem14201", baudrate=9600):
+    def __init__(self):
         super().__init__()
-        self.port = port
-        self.baudrate = baudrate
+        self.baudrate = 9600
         self.running = True
 
-    def run(self):
+        self.config_manager = ConfigManager()
+        self.configs = self.config_manager.get_all()
+
+        self.gps_port = self.configs.get("GPS_PORT", "")
+        self.interval_minutes = self.configs.get(
+            "GPS_LOG_INTERVAL_MINUTES", 30
+        )  # default 30 menit
+
+        self.last_sent_time = 0  # timestamp terakhir kirim
+        self.last_lat = None
+        self.last_lon = None
+
+        print(
+            f"[GPS] Port: {self.gps_port} | Kirim setiap {self.interval_minutes} menit"
+        )
+
+    def send_to_server(self):
+        if not self.last_lat or not self.last_lon:
+            return
+
+        url = "https://jasaapk.us/sw/api/v1/locations"
+        payload = {
+            "token": "24999306-3fdb-477d-8e86-96d067cd0a60",
+            "latitude": f"{self.last_lat:.6f}",
+            "longitude": f"{self.last_lon:.6f}",
+        }
+
         try:
-            ser = serial.Serial(self.port, baudrate=self.baudrate, timeout=1)
+            r = requests.post(url, json=payload, timeout=10)
+            if r.status_code == 200:
+                print(f"[GPS] Sukses kirim: {self.last_lat:.6f}, {self.last_lon:.6f}")
+            else:
+                print(f"[GPS] Gagal kirim: {r.status_code} {r.text}")
+        except Exception as e:
+            print(f"[GPS] Error kirim: {e}")
+
+    def run(self):
+        if not self.gps_port or self.gps_port in ["", "None"]:
+            print("[GPS] Port tidak disetel ke None → GPS dimatikan")
+            return
+
+        try:
+            ser = serial.Serial(self.gps_port, self.baudrate, timeout=1)
+            print(f"[GPS] Terhubung ke {self.gps_port}")
+
             while self.running:
                 line = ser.readline().decode("ascii", errors="replace").strip()
-                if line.startswith(("$GPGGA", "$GNGGA")):
-                    msg = pynmea2.parse(line)
-                    if msg.latitude and msg.latitude != 0:
-                        self.position_updated.emit(msg.latitude, msg.longitude)
+                if line.startswith(("$GPGGA", "$GNGGA", "$GPRMC", "$GNRMC")):
+                    try:
+                        msg = pynmea2.parse(line)
+                        if msg.latitude and msg.longitude and msg.latitude != 0:
+                            lat = float(msg.latitude)
+                            lon = float(msg.longitude)
+
+                            self.last_lat = lat
+                            self.last_lon = lon
+                            self.position_updated.emit(lat, lon)
+
+                            # Kirim ke server sesuai interval
+                            current_time = time.time()
+                            if (
+                                current_time - self.last_sent_time
+                                >= self.interval_minutes * 60
+                            ):
+                                self.send_to_server()
+                                self.last_sent_time = current_time
+                    except:
+                        continue
             ser.close()
         except Exception as e:
-            print("GPS error:", e)
+            print(f"[GPS] Error: {e}")
 
     def stop(self):
         self.running = False
@@ -80,9 +144,9 @@ class LocationPage(QWidget):
 
     def showEvent(self, event):
         super().showEvent(event)
-        if not self.gps_thread:  # hanya buat sekali
+        if not self.gps_thread:
             self.gps_thread = QThread()
-            self.gps_worker = GPSWorker("/dev/cu.usbmodem14201")  # sesuaikan port
+            self.gps_worker = GPSWorker()
             self.gps_worker.moveToThread(self.gps_thread)
 
             self.gps_thread.started.connect(self.gps_worker.run)
