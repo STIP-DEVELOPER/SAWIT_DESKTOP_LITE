@@ -39,10 +39,7 @@ class YOLOThreadController(QThread):
         self.lidar_threshold = self.configs.get("LIDAR_THRESHOLD", 200)
 
         self.counter = 0
-        # self.model = YOLO(self._get_model_path(self.model_name))
-        self.model = YOLO(
-            self._get_model_path(self.model_name), task="detect", backend="ncnn"
-        )
+        self.model = YOLO(self._get_model_path(self.model_name))
 
     def _get_model_path(self, model_name):
         MODEL_PATH = os.path.join(os.getcwd(), f"models/{model_name}")
