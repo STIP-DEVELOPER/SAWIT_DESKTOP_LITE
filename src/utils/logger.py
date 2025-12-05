@@ -5,7 +5,9 @@ from threading import Lock
 
 from utils.path import ROOT_DIR
 
-LOG_FILE = os.path.join(ROOT_DIR, "logs", "data.json")
+LOG_FILE = os.path.join(ROOT_DIR, "/logs", "data.json")
+
+print(f"[Logger] Log file path: {LOG_FILE}")
 
 
 _log_lock = Lock()
