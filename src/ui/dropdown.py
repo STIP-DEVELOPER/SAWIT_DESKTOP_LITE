@@ -36,7 +36,7 @@ class Dropdown(QWidget):
         if default in items:
             self.combo.setCurrentText(default)
 
-        # Modern Style
+        # Modern Dark Style (FIX OPACITY ISSUE ON UBUNTU)
         self.combo.setStyleSheet(
             f"""
             QComboBox {{
@@ -50,38 +50,33 @@ class Dropdown(QWidget):
 
             QComboBox:hover {{
                 border: 1px solid {colors.PRIMARY_COLOR};
-                background-color: {colors.SURFACE_COLOR};
             }}
 
             QComboBox:focus {{
                 border: 1.5px solid {colors.PRIMARY_COLOR};
-                background-color: {colors.SURFACE_COLOR};
+                background-color: {colors.SURFACE_COLOR};   /* FIX: dark, not white */
             }}
 
-            /* Arrow Button */
             QComboBox::drop-down {{
                 width: 32px;
                 border: none;
                 background: transparent;
             }}
 
-            /* Dropdown List */
             QComboBox QAbstractItemView {{
-                background: {colors.WHITE};
+                background: {colors.SURFACE_COLOR};     /* FIX: dark instead of white */
                 border: 1px solid {colors.BORDER_COLOR};
                 padding: 6px;
                 outline: none;
                 selection-background-color: {colors.PRIMARY_COLOR};
-                selection-color: {colors.TEXT_ON_PRIMARY};
+                selection-color: {colors.WHITE};
                 font-size: 14px;
             }}
 
-            /* Items */
-            QComboBox QAbstractItemView {{
-                background: {colors.SURFACE_COLOR};
-                border: 1px solid {colors.BORDER_COLOR};
-                selection-background-color: {colors.PRIMARY_COLOR};
-                selection-color: {colors.WHITE};
+            QComboBox QAbstractItemView::item {{
+                padding: 6px 10px;
+                border-radius: 6px;
+                margin: 2px;
             }}
         """
         )
@@ -103,5 +98,4 @@ class Dropdown(QWidget):
             self.combo.setCurrentIndex(index)
 
     def on_change(self, callback):
-
         self.combo.currentTextChanged.connect(callback)
