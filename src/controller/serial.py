@@ -68,7 +68,7 @@ class SerialController(QThread):
 
     def send(self, data):
         """Send data to serial"""
-        if self.ser and self.ser.is_open:
+        if self.ser and self.ser.is_open and not self.is_busy:
             try:
                 self.ser.write((data + "\n").encode())
                 print(f"[Serial] Sent: {data}")
