@@ -41,7 +41,7 @@ class Dropdown(QWidget):
             f"""
             QComboBox {{
                 background-color: {colors.SURFACE_COLOR};
-                color: {colors.TEXT_PRIMARY};
+                color: white;
                 border: 1px solid {colors.BORDER_COLOR};
                 border-radius: 12px;
                 padding: 10px 14px;

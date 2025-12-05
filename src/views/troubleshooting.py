@@ -83,7 +83,7 @@ class TroubleshootingPage(QWidget):
         # Buttons
         btn_layout = QHBoxLayout()
         btn_layout.addStretch()
-        self.start_button = Button(text="Mulai", icon_path=get_icon("brain.png"))
+        self.start_button = Button(text="Mulai")
         self.start_button.clicked.connect(self._start_analysis)
         btn_layout.addWidget(self.start_button)
 
@@ -114,7 +114,7 @@ class TroubleshootingPage(QWidget):
 
         self.terminal.clear()
         self.terminal.append(
-            '<div class="status">[NEURAL]</div>Memindai kondisi robot terbaru'
+            '<div class="status">[NEURAL]</div>Memindai kondisi terbaru'
         )
 
         try:
@@ -133,10 +133,8 @@ class TroubleshootingPage(QWidget):
         self.terminal.append(
             '<div class="ok">[OK]</div>Data real-time berhasil diakses'
         )
-        self.terminal.append(
-            '<div class="aitri">[AITRI]</div>Sedang menganalisis pola perilaku robot...\n'
-        )
-        self._update_status("loading", "AITRI sedang berpikir mendalam...")
+        self.terminal.append('<div class="aitri">[AITRI]</div>Sedang menganalisis...\n')
+        self._update_status("loading", "sedang berpikir...")
 
         messages = [
             {
@@ -191,7 +189,7 @@ class TroubleshootingPage(QWidget):
         self.is_running = False
 
     def _reset_buttons(self):
-        self.start_button.setText("Mulai Diagnosis AI")
+        self.start_button.setText("Mulai Diagnosis...")
         self.start_button.setEnabled(True)
         self.is_running = False
 

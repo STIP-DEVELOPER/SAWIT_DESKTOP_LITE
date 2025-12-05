@@ -1,281 +1,5 @@
 [
     {
-        "timestamp": "2025-12-04T21:06:25",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:25",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:25",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:25",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:06:26",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:18:48",
-        "level": "INFO",
-        "source": "UI_SETTINGS",
-        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200}"
-    },
-    {
-        "timestamp": "2025-12-04T21:18:52",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:18:52",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:18:52",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:18:52",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:03",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:04",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:04",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:04",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:04",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:07",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:09",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:09",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:09",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:09",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:13",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:14",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:15",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:15",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:15",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:17",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:18",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:18",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:18",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:18",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:20",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:21",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:21",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:21",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:21",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:23",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:24",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:24",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:24",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:24",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:31",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:33",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:33",
-        "level": "ERROR",
-        "source": "SERIAL_CONTROLLER",
-        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:33",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:33",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
-    },
-    {
-        "timestamp": "2025-12-04T21:19:38",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
         "timestamp": "2025-12-04T23:18:22",
         "level": "INFO",
         "source": "UI_SETTINGS",
@@ -298,5 +22,281 @@
         "level": "INFO",
         "source": "UI_SETTINGS",
         "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200, 'GPS_PORT': '/dev/cu.usbmodem14101', 'GPS_LOG_INTERVAL': '60 menit', 'GPS_LOG_INTERVAL_MINUTES': 60}"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:44",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:44",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:44",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:44",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:58",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:59",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:59",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:59",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:17:59",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:03",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:07",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:07",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:07",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:07",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:11",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:12",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:12",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:12",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:12",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:16",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:18",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:18",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:18",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:18",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:22",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:31",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:31",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:31",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:31",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:35",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:36",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:36",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:36",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:36",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:40",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:46",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:46",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:46",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:46",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:48",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:49",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:49",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:49",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:18:49",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-05T07:19:02",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-05T23:20:58",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'SERIAL_PORT': 'None', 'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 200, 'GPS_PORT': '', 'GPS_LOG_INTERVAL': '60 menit', 'GPS_LOG_INTERVAL_MINUTES': 60}"
     }
 ]
