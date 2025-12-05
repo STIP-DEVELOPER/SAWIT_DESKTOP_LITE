@@ -1,7 +1,27 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox, QSizePolicy
+from PyQt5.QtWidgets import (
+    QWidget,
+    QVBoxLayout,
+    QLabel,
+    QComboBox,
+    QListView,
+    QSizePolicy,
+)
 from PyQt5.QtCore import Qt
-
 from configs import colors
+
+
+class DarkListView(QListView):
+    """
+    Custom ListView to disable Ubuntu dimming effect.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowFlags(
+            Qt.Popup | Qt.FramelessWindowHint | Qt.NoDropShadowWindowHint
+        )
+        self.setAttribute(Qt.WA_TranslucentBackground, False)
+        self.setStyleSheet("background: transparent;")
 
 
 class Dropdown(QWidget):
@@ -22,21 +42,43 @@ class Dropdown(QWidget):
                 color: {colors.TEXT_PRIMARY};
                 font-size: 13px;
                 font-weight: 600;
-                letter-spacing: 0.3px;
             """
         )
         layout.addWidget(self.label)
 
-        # Dropdown
+        # ComboBox
         self.combo = QComboBox()
         self.combo.addItems(items)
-        self.combo.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.combo.setMinimumHeight(40)
+        self.combo.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 
-        if default in items:
-            self.combo.setCurrentText(default)
+        # -----------------------------
+        # 🔥 FIX UTAMA: Non-Dimming Popup
+        # -----------------------------
+        popup = DarkListView()
+        self.combo.setView(popup)
 
-        # Modern Dark Style (FIX OPACITY ISSUE ON UBUNTU)
+        # Custom dark popup style
+        popup.setStyleSheet(
+            f"""
+            QListView {{
+                background-color: {colors.SURFACE_COLOR};
+                border: 1px solid {colors.BORDER_COLOR};
+                padding: 6px;
+                outline: none;
+            }}
+            QListView::item {{
+                padding: 8px 12px;
+                color: {colors.TEXT_PRIMARY};
+            }}
+            QListView::item:selected {{
+                background-color: {colors.PRIMARY_COLOR};
+                color: {colors.WHITE};
+            }}
+        """
+        )
+
+        # ComboBox style
         self.combo.setStyleSheet(
             f"""
             QComboBox {{
@@ -54,48 +96,23 @@ class Dropdown(QWidget):
 
             QComboBox:focus {{
                 border: 1.5px solid {colors.PRIMARY_COLOR};
-                background-color: {colors.SURFACE_COLOR};   /* FIX: dark, not white */
+                background-color: {colors.SURFACE_COLOR};
             }}
 
             QComboBox::drop-down {{
-                width: 32px;
+                width: 28px;
                 border: none;
                 background: transparent;
-            }}
-
-            QComboBox QAbstractItemView {{
-                background: {colors.SURFACE_COLOR};     /* FIX: dark instead of white */
-                border: 1px solid {colors.BORDER_COLOR};
-                padding: 6px;
-                outline: none;
-                selection-background-color: {colors.PRIMARY_COLOR};
-                selection-color: {colors.WHITE};
-                font-size: 14px;
-            }}
-
-            QComboBox QAbstractItemView::item {{
-                padding: 6px 10px;
-                border-radius: 6px;
-                margin: 2px;
             }}
         """
         )
 
         layout.addWidget(self.combo)
 
-        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-
     def get_value(self):
         return self.combo.currentText()
-
-    def set_items(self, items):
-        self.combo.clear()
-        self.combo.addItems(items)
 
     def set_value(self, value):
         index = self.combo.findText(value)
         if index >= 0:
             self.combo.setCurrentIndex(index)
-
-    def on_change(self, callback):
-        self.combo.currentTextChanged.connect(callback)
