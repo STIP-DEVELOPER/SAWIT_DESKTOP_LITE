@@ -7,6 +7,7 @@ from ultralytics import YOLO
 from configs.config_manager import ConfigManager
 from controller.serial import SerialController
 from controller.lidar import LidarController
+from utils.path import ROOT_DIR
 
 
 class YOLOThreadController(QThread):
@@ -42,7 +43,8 @@ class YOLOThreadController(QThread):
         self.model = YOLO(self._get_model_path(self.model_name))
 
     def _get_model_path(self, model_name):
-        MODEL_PATH = os.path.join(os.getcwd(), f"models/{model_name}")
+        MODEL_PATH = os.path.join(ROOT_DIR, "models", model_name)
+
         print(f"[YOLOThread] Model path: {MODEL_PATH}")
         return MODEL_PATH
 
