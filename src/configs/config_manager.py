@@ -1,11 +1,12 @@
 import json
 import os
 
+from utils.path import ROOT_DIR
+
 
 class ConfigManager:
     def __init__(self, autosave=True):
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        self.file_path = os.path.join(BASE_DIR, "config.json")
+        self.file_path = os.path.join(ROOT_DIR, "config.json")
         self.autosave = autosave
         self.config = {}
         self._load()
