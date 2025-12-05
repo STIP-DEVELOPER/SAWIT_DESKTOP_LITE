@@ -7,11 +7,6 @@ import os
 # )
 # os.environ["QT_QPA_PLATFORM"] = "xcb"
 
-import os
-
-os.environ["QT_STYLE_OVERRIDE"] = "Fusion"
-
-
 import sys
 from PyQt5.QtWidgets import QApplication
 
