@@ -19,7 +19,7 @@ class Dropdown(QWidget):
         self.label = QLabel(label_text)
         self.label.setStyleSheet(
             f"""
-                color: white;
+                color: {colors.TEXT_PRIMARY};
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
@@ -55,7 +55,7 @@ class Dropdown(QWidget):
 
             QComboBox:focus {{
                 border: 1.5px solid {colors.PRIMARY_COLOR};
-                background-color: {colors.WHITE};
+                background-color: {colors.SURFACE_COLOR};
             }}
 
             /* Arrow Button */
@@ -77,10 +77,11 @@ class Dropdown(QWidget):
             }}
 
             /* Items */
-            QComboBox QAbstractItemView::item {{
-                padding: 6px 10px;
-                border-radius: 6px;
-                margin: 2px;
+            QComboBox QAbstractItemView {{
+                background: {colors.SURFACE_COLOR};
+                border: 1px solid {colors.BORDER_COLOR};
+                selection-background-color: {colors.PRIMARY_COLOR};
+                selection-color: {colors.WHITE};
             }}
         """
         )
