@@ -19,7 +19,7 @@ class Dropdown(QWidget):
         self.label = QLabel(label_text)
         self.label.setStyleSheet(
             f"""
-                color: {colors.TEXT_PRIMARY};
+                color: white;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
@@ -41,7 +41,7 @@ class Dropdown(QWidget):
             f"""
             QComboBox {{
                 background-color: {colors.SURFACE_COLOR};
-                color: white;
+                color: {colors.TEXT_PRIMARY};
                 border: 1px solid {colors.BORDER_COLOR};
                 border-radius: 12px;
                 padding: 10px 14px;
