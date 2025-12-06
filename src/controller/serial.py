@@ -73,8 +73,8 @@ class SerialController(QThread):
         """Send data to serial"""
         if self.ser and self.ser.is_open and not self.is_busy:
             try:
-                self.ser.write((data + "\n").encode())
-                print(f"[Serial] Sent: {data}")
+                self.ser.write((self._encode_command(data) + "\n").encode())
+                print(f"[Serial] Sent: {self._encode_command(data)}")
             except Exception as e:
                 print(f"[Serial] Failed to send: {e}")
                 add_log(
@@ -82,6 +82,16 @@ class SerialController(QThread):
                     LogSource.SERIAL_CONTROLLER.value,
                     f"Serial send error: {str(e)}",
                 )
+
+    def _encode_command(self, cmd: str) -> str:
+        cmd = cmd.upper().strip()
+
+        if cmd == "LEFT":
+            return "L"
+        elif cmd == "RIGHT":
+            return "R"
+        else:
+            raise ValueError(f"Unknown command: {cmd}")
 
     def _handle_serial_error(self, error):
         """Handle serial errors and emit connection_lost"""

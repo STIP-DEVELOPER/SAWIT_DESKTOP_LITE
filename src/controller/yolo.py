@@ -188,7 +188,8 @@ class YOLOThreadController(QThread):
                         self.detection_ready.emit(message)
 
                         if self._is_distance_valid(position):
-                            self._send_serial_message(position)
+                            encoded = self._encode_command(position)
+                            self._send_serial_message(encoded)
                 else:
                     annotated = last_annotated if last_annotated is not None else frame
 
@@ -210,6 +211,16 @@ class YOLOThreadController(QThread):
                 self.frame_ready.emit(qt_image)
             except RuntimeError:
                 break
+
+    def _encode_command(self, cmd: str) -> str:
+        cmd = cmd.upper().strip()
+
+        if cmd == "LEFT":
+            return "L"
+        elif cmd == "RIGHT":
+            return "R"
+        else:
+            raise ValueError(f"Unknown command: {cmd}")
 
     def stop(self):
         print("[YOLOThread] Stop requested")
