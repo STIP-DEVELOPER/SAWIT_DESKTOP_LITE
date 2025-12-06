@@ -3,11 +3,10 @@ import os
 from datetime import datetime
 from threading import Lock
 
-from utils.path import ROOT_DIR
+from utils.path import DATA_JSON
 
-LOG_FILE = os.path.join(ROOT_DIR, "logs", "data.json")
 
-print(f"[Logger] Log file path: {LOG_FILE}")
+print(f"[Logger] Log file path: {DATA_JSON}")
 
 
 _log_lock = Lock()
@@ -15,17 +14,17 @@ MAX_LOG_COUNT = 50
 
 
 def _read_logs():
-    if not os.path.exists(LOG_FILE):
+    if not os.path.exists(DATA_JSON):
         return []
     try:
-        with open(LOG_FILE, "r") as f:
+        with open(DATA_JSON, "r") as f:
             return json.load(f)
     except json.JSONDecodeError:
         return []
 
 
 def _write_logs(logs):
-    with open(LOG_FILE, "w") as f:
+    with open(DATA_JSON, "w") as f:
         json.dump(logs, f, indent=4)
 
 

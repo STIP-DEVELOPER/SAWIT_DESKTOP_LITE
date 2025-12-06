@@ -15,7 +15,7 @@ from ui.button import Button
 from ui.dropdown import Dropdown
 from ui.input import InputForm
 from utils.logger import add_log
-from utils.path import ROOT_DIR
+from utils.path import MODELS_DIR, ROOT_DIR
 from utils.serial import get_serial_ports
 from utils.icon import get_icon
 
@@ -33,15 +33,14 @@ def detect_camera_indexes(max_test=5):
 
 
 def get_available_models():
-    models_path = os.path.join(ROOT_DIR, "models")
 
-    if not os.path.exists(models_path):
+    if not os.path.exists(MODELS_DIR):
         return ["No models found"]
     return sorted(
         [
             d
-            for d in os.listdir(models_path)
-            if os.path.isdir(os.path.join(models_path, d)) and not d.startswith("__")
+            for d in os.listdir(MODELS_DIR)
+            if os.path.isdir(os.path.join(MODELS_DIR, d)) and not d.startswith("__")
         ]
     )
 

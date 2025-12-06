@@ -1,8 +1,11 @@
 import os
-from os.path import dirname, join
+from os.path import dirname, abspath, join
 
 ROOT = dirname(dirname(__file__))
-ICON_DIR = join(ROOT, "src", "assets", "icons")
+ICON_DIR = join(ROOT, "assets", "icons")
 
+ROOT_DIR = dirname(dirname(dirname(abspath(__file__))))
+LOGS_DIR = join(ROOT_DIR, "logs")
+DATA_JSON = join(LOGS_DIR, "data.json")
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODELS_DIR = join(ROOT_DIR, "models")
