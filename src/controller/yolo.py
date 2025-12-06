@@ -182,7 +182,7 @@ class YOLOThreadController(QThread):
 
                         if position == "RIGHT":
                             message = (
-                                f"Right |{name}|{conf:.2f}|{self.right_distance} cm"
+                                f"Right | {name}|{conf:.2f}|{self.right_distance} cm"
                             )
 
                         self.detection_ready.emit(message)
