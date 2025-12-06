@@ -45,18 +45,21 @@ class SerialController(QThread):
         """Read a single line from serial if available"""
         if self.ser and self.ser.in_waiting > 0:
             try:
-                line = self.ser.readline().decode(errors="ignore").strip()
-                if line:
-                    self.data_received.emit(line)
-                    print(f"[Serial] - {line}")
+                line = self.ser.read(1).decode("utf-8", "ignore")
 
-                if "BUSY" in line.upper():
+                if not line:
+                    return
+
+                if line == "1":  # BUSY
                     self.is_busy = True
-                    print("[Serial] Arduino BUSY → Stop sending commands")
+                    print("[Serial] Controller BUSY → Stop sending commands")
 
-                elif "READY" in line.upper():
+                elif line == "0":  # READY
                     self.is_busy = False
-                    print("[Serial] Arduino READY → Send enabled")
+                    print("[Serial] Controller READY → Send enabled")
+
+                self.data_received.emit(line)
+                print(f"[Serial] - {line}")
 
             except Exception as e:
                 print(f"[Serial] Failed to read data: {e}")
