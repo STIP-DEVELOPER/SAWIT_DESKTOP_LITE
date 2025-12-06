@@ -212,16 +212,6 @@ class YOLOThreadController(QThread):
             except RuntimeError:
                 break
 
-    def _encode_command(self, cmd: str) -> str:
-        cmd = cmd.upper().strip()
-
-        if cmd == "LEFT":
-            return "L"
-        elif cmd == "RIGHT":
-            return "R"
-        else:
-            raise ValueError(f"Unknown command: {cmd}")
-
     def stop(self):
         print("[YOLOThread] Stop requested")
 
