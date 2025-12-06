@@ -1,8 +1,6 @@
-import os
 from os.path import dirname, abspath, join
 
 ROOT = dirname(dirname(__file__))
-ICON_DIR = join(ROOT, "assets", "icons")
 
 ROOT_DIR = dirname(dirname(dirname(abspath(__file__))))
 LOGS_DIR = join(ROOT_DIR, "logs")
