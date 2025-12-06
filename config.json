@@ -1,0 +1,14 @@
+{
+    "CAMERA_INDEX": 0,
+    "YOLO_MODEL": "general_ncnn_model",
+    "SERIAL_PORT": "/dev/cu.usbserial-1410",
+    "CONFIDENCE": 0.5,
+    "BAUDRATE": 9600,
+    "FPS": 5,
+    "LIDAR_LEFT_PORT": "/dev/cu.usbserial-1",
+    "LIDAR_RIGHT_PORT": "/dev/cu.usbserial-0001",
+    "LIDAR_THRESHOLD": 100,
+    "GPS_PORT": "/dev/cu.usbmodem142401",
+    "GPS_LOG_INTERVAL": "30 menit",
+    "GPS_LOG_INTERVAL_MINUTES": 30
+}

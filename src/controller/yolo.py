@@ -14,7 +14,7 @@ class YOLOThreadController(QThread):
     frame_ready = pyqtSignal(QImage)
     detection_ready = pyqtSignal(str)
 
-    def __init__(self):
+    def __init__(self, lidar_left, lidar_right):
         super().__init__()
         self.running = False
         self.cap = None
@@ -23,7 +23,12 @@ class YOLOThreadController(QThread):
 
         self._init_configs()
         self._init_serial_controller()
-        self._init_lidar_controller()
+
+        self.lidar_left = lidar_left
+        self.lidar_right = lidar_right
+
+        self.lidar_left.data_received.connect(self.update_left_distance)
+        self.lidar_right.data_received.connect(self.update_right_distance)
 
     def _init_configs(self):
         self.config_manager = ConfigManager()
@@ -35,8 +40,6 @@ class YOLOThreadController(QThread):
         self.serial_port = self.configs.get("SERIAL_PORT", "")
         self.baudrate = self.configs.get("BAUDRATE", 9600)
         self.frame_skip = self.configs.get("FPS", 5)
-        self.lidar_left_port = self.configs.get("LIDAR_LEFT_PORT", "")
-        self.lidar_right_port = self.configs.get("LIDAR_RIGHT_PORT", "")
         self.lidar_threshold = self.configs.get("LIDAR_THRESHOLD", 200)
 
         self.counter = 0
@@ -56,17 +59,6 @@ class YOLOThreadController(QThread):
             self.serial_controller.start()
         else:
             self.serial_controller = None
-
-    def _init_lidar_controller(self):
-
-        self.lidar_left = LidarController(port=self.lidar_left_port)
-        self.lidar_right = LidarController(port=self.lidar_right_port)
-
-        self.lidar_left.data_received.connect(self.update_left_distance)
-        self.lidar_right.data_received.connect(self.update_right_distance)
-
-        self.lidar_left.start()
-        self.lidar_right.start()
 
     def update_left_distance(self, data):
         self.left_distance = data["distance_cm"]
@@ -182,7 +174,7 @@ class YOLOThreadController(QThread):
 
                         if position == "RIGHT":
                             message = (
-                                f"Right | {name}|{conf:.2f}|{self.right_distance} cm"
+                                f"Right |{name}| {conf:.2f}| {self.right_distance} cm"
                             )
 
                         self.detection_ready.emit(message)

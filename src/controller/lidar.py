@@ -25,7 +25,7 @@ class LidarController(QThread):
 
     def _open_serial(self):
         """Open serial port"""
-        self.ser = serial.Serial(self.port, self.baudrate, timeout=1)
+        self.ser = serial.Serial(self.port, self.baudrate, timeout=0.05)
         print(f"[Lidar] Connected to {self.port}")
 
     def _cleanup_serial(self):
@@ -77,7 +77,13 @@ class LidarController(QThread):
             self._cleanup_serial()
 
     def stop(self):
-        """Stop the thread safely"""
         self._running = False
-        self.wait()
+
+        try:
+            if self.ser:
+                self.ser.cancel_read()
+        except:
+            pass
+
+        self.wait(500)  # Wait for thread to finish
         self._cleanup_serial()

@@ -9,6 +9,8 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 
+from configs.config_manager import ConfigManager
+from controller.lidar import LidarController
 from enums.log import LogLevel, LogSource
 from ui.button import Button
 from utils.format import format_log_text
@@ -25,6 +27,20 @@ class InferencePage(QWidget):
         self.yolo_thread = None
         self.original_frame_size = None
         self._build_ui()
+        self._init_configs()
+
+    def _init_configs(self):
+        self.config_manager = ConfigManager()
+        self.configs = self.config_manager.get_all()
+
+        self.lidar_left_port = self.configs.get("LIDAR_LEFT_PORT", "")
+        self.lidar_right_port = self.configs.get("LIDAR_RIGHT_PORT", "")
+
+        self.lidar_left = LidarController(port=self.lidar_left_port)
+        self.lidar_right = LidarController(port=self.lidar_right_port)
+
+        self.lidar_left.start()
+        self.lidar_right.start()
 
     def _build_ui(self):
         self.camera_container = QWidget(self)
@@ -146,7 +162,9 @@ class InferencePage(QWidget):
 
     def start_yolo(self):
         try:
-            self.yolo_thread = YOLOThreadController()
+            self.yolo_thread = YOLOThreadController(
+                lidar_left=self.lidar_left, lidar_right=self.lidar_right
+            )
 
             if self.yolo_thread and self.yolo_thread.isRunning():
                 self.yolo_thread.stop()
