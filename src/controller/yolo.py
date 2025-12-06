@@ -182,14 +182,13 @@ class YOLOThreadController(QThread):
 
                         if position == "RIGHT":
                             message = (
-                                f"Right |{name}|{conf:.2f}|{self.right_distance}cm"
+                                f"Right |{name}|{conf:.2f}|{self.right_distance} cm"
                             )
 
                         self.detection_ready.emit(message)
 
                         if self._is_distance_valid(position):
-                            encoded = self._encode_command(position)
-                            self._send_serial_message(encoded)
+                            self._send_serial_message(position)
                 else:
                     annotated = last_annotated if last_annotated is not None else frame
 
