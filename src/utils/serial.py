@@ -9,51 +9,60 @@
 
 
 import os
-import serial.tools.list_ports
+import platform
 
-# Nama port tetap yang sudah kita buat lewat udev rule
-FIXED_PORTS = {
-    "microcontroller": "/dev/ttyMICROCONTROLLER",
-    "gps": "/dev/ttyGPS",
-    "lidar_left": "/dev/ttyLIDAR_LEFT",
-    "lidar_right": "/dev/ttyLIDAR_RIGHT",
-}
+# Nama port custom (ubah sesuai sistem kamu)
+if platform.system() == "Linux":
+    FIXED_PORTS = {
+        "microcontroller": "/dev/ttyMICROCONTROLLER",
+        "lidar_left": "/dev/ttyLIDAR_LEFT",
+        "lidar_right": "/dev/ttyLIDAR_RIGHT",
+        "gps": "/dev/ttyGPS",
+    }
+elif platform.system() == "Darwin":  # macOS
+    FIXED_PORTS = {
+        "microcontroller": "/dev/cu.usbserial-0001",  # sesuaikan
+        "lidar_left": "/dev/cu.usbmodem14301",  # sesuaikan
+        "lidar_right": "/dev/cu.usbmodem14302",  # sesuaikan
+        "gps": "/dev/cu.usbserial-0002",  # sesuaikan
+    }
+else:  # Windows
+    FIXED_PORTS = {
+        "microcontroller": "COM3",
+        "lidar_left": "COM4",
+        "lidar_right": "COM5",
+        "gps": "COM6",
+    }
 
 
 def get_serial_ports():
     """
-    Fungsi ini MENGGANTIKAN fungsi lama kamu.
-    Return value SAMA PERSIS: list of strings (contoh: ['/dev/ttyUSB0', '/dev/ttyACM0', ...])
-    Tapi sekarang urutannya SELALU SELALU SAMA dan sesuai dengan device yang sebenarnya.
+    Return list string PERSIS seperti fungsi lama kamu,
+    tapi sekarang pakai nama custom yang stabil.
     """
-    # Kumpulkan port tetap yang benar-benar ada
-    active_fixed = []
-    for path in FIXED_PORTS.values():
-        if os.path.exists(path):
-            # Ambil nama asli (ttyUSBx / ttyACM0) dari symlink
-            try:
-                real_path = os.readlink(path)
-                full_real = os.path.join("/dev", real_path)
-                active_fixed.append(full_real)
-            except:
-                active_fixed.append(path)  # fallback kalau symlink rusak
+    ports = []
+    order = ["microcontroller", "lidar_left", "lidar_right", "gps"]
 
-    # Jika semua port tetap ada → kembalikan sesuai urutan logika traktor
-    if len(active_fixed) == 4:
-        result = [
-            FIXED_PORTS["microcontroller"],  # Arduino
-            FIXED_PORTS["lidar_left"],  # TF-Luna kiri
-            FIXED_PORTS["lidar_right"],  # TF-Luna kanan
-            FIXED_PORTS["gps"],  # GPS u-blox
-        ]
-        print("found serial ports (FIXED + STABLE):", result)
-        return result
+    for key in order:
+        path = FIXED_PORTS[key]
+        if os.path.exists(path) or platform.system() == "Windows":
+            ports.append(path)
 
-    # Fallback: kalau ada yang hilang, tetap pakai cara lama (tapi beri warning)
-    print(
-        "Peringatan: Tidak semua port tetap terdeteksi. Gunakan scanning sementara..."
-    )
-    ports = serial.tools.list_ports.comports()
-    result = [p.device for p in ports]
-    print("found serial ports (fallback):", result)
-    return result
+    if len(ports) == 4:
+        print("found serial ports (CUSTOM):", ports)
+        return ports
+
+    # Fallback kalau di macOS/Windows belum diatur
+    try:
+        import serial.tools.list_ports
+
+        fallback = [p.device for p in serial.tools.list_ports.comports()]
+        print("found serial ports (fallback):", fallback)
+        return fallback
+    except:
+        return ports
+
+
+# Tes langsung
+if __name__ == "__main__":
+    print(get_serial_ports())
