@@ -1,29 +1,5 @@
 [
     {
-        "timestamp": "2025-12-07T01:23:30",
-        "level": "INFO",
-        "source": "UI_SETTINGS",
-        "message": "Settings saved {'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'SERIAL_PORT': '/dev/cu.usbserial-1410', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': '/dev/cu.usbserial-0001', 'LIDAR_RIGHT_PORT': '/dev/cu.usbserial-3', 'LIDAR_THRESHOLD': 100, 'GPS_PORT': '/dev/cu.usbmodem142401', 'GPS_LOG_INTERVAL': '30 menit', 'GPS_LOG_INTERVAL_MINUTES': 30}"
-    },
-    {
-        "timestamp": "2025-12-07T01:32:50",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: read failed: [Errno 6] Device not configured"
-    },
-    {
-        "timestamp": "2025-12-07T02:04:22",
-        "level": "INFO",
-        "source": "UI_SETTINGS",
-        "message": "Settings saved {'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'SERIAL_PORT': '/dev/cu.usbserial-3', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': '/dev/cu.usbserial-0001', 'LIDAR_RIGHT_PORT': '/dev/cu.usbserial-3', 'LIDAR_THRESHOLD': 100, 'GPS_PORT': '/dev/cu.usbserial-3', 'GPS_LOG_INTERVAL': '30 menit', 'GPS_LOG_INTERVAL_MINUTES': 30}"
-    },
-    {
-        "timestamp": "2025-12-07T02:04:26",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
         "timestamp": "2025-12-07T02:04:45",
         "level": "INFO",
         "source": "UI_HOME",
@@ -298,5 +274,29 @@
         "level": "INFO",
         "source": "UI_HOME",
         "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-07T09:42:15",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-0001: [Errno 2] No such file or directory: '/dev/cu.usbserial-0001'"
+    },
+    {
+        "timestamp": "2025-12-07T09:42:15",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-2: [Errno 2] No such file or directory: '/dev/cu.usbserial-2'"
+    },
+    {
+        "timestamp": "2025-12-07T09:43:51",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-0001: [Errno 2] No such file or directory: '/dev/cu.usbserial-0001'"
+    },
+    {
+        "timestamp": "2025-12-07T09:43:51",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-2: [Errno 2] No such file or directory: '/dev/cu.usbserial-2'"
     }
 ]

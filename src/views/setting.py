@@ -176,14 +176,26 @@ class SettingsPage(QWidget):
 
         grid.addWidget(self.select_lidar_threshold, 8, 1)
 
+        self.refresh_button = Button(
+            text="Refresh Ports",
+            icon_path=get_icon("refresh.png"),
+        )
+        self.refresh_button.clicked.connect(self._refresh_ports)
+
         self.save_button = Button(
             text="Save Settings",
             icon_path=get_icon("save.png"),
         )
         self.save_button.clicked.connect(self._save_settings)
 
+        # button_layout = QHBoxLayout()
+        # button_layout.addStretch()
+        # button_layout.addWidget(self.save_button)
+        # button_layout.setContentsMargins(0, 0, 20, 20)
+
         button_layout = QHBoxLayout()
         button_layout.addStretch()
+        button_layout.addWidget(self.refresh_button)  # ⬅ Tambahkan ini
         button_layout.addWidget(self.save_button)
         button_layout.setContentsMargins(0, 0, 20, 20)
 
@@ -191,6 +203,21 @@ class SettingsPage(QWidget):
         layout.addLayout(button_layout)
         layout.addStretch()
         self.setLayout(layout)
+
+    def _refresh_ports(self):
+        usb_ports = get_serial_ports()
+        usb_ports.append("None")
+
+        if not usb_ports:
+            usb_ports = ["No ports detected"]
+
+        # Update semua dropdown port
+        self.select_port.set_value(usb_ports)
+        self.select_lidar_left.set_value(usb_ports)
+        self.select_lidar_right.set_value(usb_ports)
+        self.select_gps_port.set_value(usb_ports)
+
+        QMessageBox.information(self, "Info", "Daftar port berhasil diperbarui.")
 
     def _load_settings(self):
         cfg = self.configs.get_all()
