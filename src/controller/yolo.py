@@ -221,4 +221,8 @@ class YOLOThreadController(QThread):
 
         self.cap = None
 
+        if self.serial_controller:
+            self.serial_controller.stop()
+            self.serial_controller = None
+
         print("[YOLOThread] Fully stopped")

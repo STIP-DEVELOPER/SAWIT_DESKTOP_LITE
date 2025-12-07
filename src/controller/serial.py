@@ -16,7 +16,6 @@ class SerialController(QThread):
         self.baudrate = baudrate
         self.ser = None
         self.is_busy = False
-
         self._running = False
 
     def run(self):
@@ -56,6 +55,8 @@ class SerialController(QThread):
 
                 elif line == "0":  # READY
                     self.is_busy = False
+                    time.sleep(0.02)
+
                     print("[Serial] Controller READY → Send enabled")
 
                 self.data_received.emit(line)
@@ -73,14 +74,14 @@ class SerialController(QThread):
         """Send data to serial"""
 
         if self.is_busy:
-            print(f"CONTROLLER IS BUSY")
+            print(f"[Serial] IGNORE (BUSY): {data}")
             return
 
         if self.ser and self.ser.is_open:
             try:
                 cmd = self._encode_command(data)
-                self.ser.write((cmd + "\n").encode())
-                print(f"[Serial] Sent: {self._encode_command(data)}")
+                self.ser.write(cmd.encode())
+                print(f"[Serial] Sent: {cmd}")
             except Exception as e:
                 print(f"[Serial] Failed to send: {e}")
                 add_log(
@@ -112,6 +113,8 @@ class SerialController(QThread):
     def _cleanup_serial(self):
         """Close serial port safely"""
         if self.ser and self.ser.is_open:
+            self.ser.reset_output_buffer()
+            self.ser.reset_input_buffer()
             self.ser.close()
             print(f"[Serial] Connection closed")
 

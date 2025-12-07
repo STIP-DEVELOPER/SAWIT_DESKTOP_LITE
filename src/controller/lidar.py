@@ -16,9 +16,12 @@ class LidarController(QThread):
         :param baudrate: Baudrate for Lidar, default 115200
         """
         super().__init__()
+        print("[Lidar] Initializing LidarController")
         self.port = port
-        # if self.port is None:
-        #     raise RuntimeError("Lidar not found on any serial port")
+        if self.port is None:
+            print(f"[Lidar] No port specified, auto-detection not implemented.")
+        else:
+            print(f"[Lidar] Using specified port: {self.port}")
         self.baudrate = baudrate
         self.ser: serial.Serial = None
         self._running = False
@@ -59,6 +62,7 @@ class LidarController(QThread):
 
     def run(self):
         """Start the Lidar reading thread"""
+        print(f"[Lidar] Starting LidarController thread on port {self.port}")
         try:
             self._open_serial()
             self._running = True
@@ -78,6 +82,7 @@ class LidarController(QThread):
 
     def stop(self):
         self._running = False
+        print("[Lidar] Stop requested")
 
         try:
             if self.ser:

@@ -42,6 +42,9 @@ class InferencePage(QWidget):
         self.lidar_left.start()
         self.lidar_right.start()
 
+        print(f"[InferencePage] Lidar Left Port: {self.lidar_left_port}")
+        print(f"[InferencePage] Lidar Right Port: {self.lidar_right_port}")
+
     def _build_ui(self):
         self.camera_container = QWidget(self)
         self.camera_container.setStyleSheet("background-color: transparent;")
@@ -162,6 +165,7 @@ class InferencePage(QWidget):
 
     def start_yolo(self):
         try:
+            self._init_configs()
             self.yolo_thread = YOLOThreadController(
                 lidar_left=self.lidar_left, lidar_right=self.lidar_right
             )
