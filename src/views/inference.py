@@ -36,17 +36,17 @@ class InferencePage(QWidget):
         # self.lidar_left_port = self.configs.get("LIDAR_LEFT_PORT", "")
         # self.lidar_right_port = self.configs.get("LIDAR_RIGHT_PORT", "")
 
-        # self.lidar_left_port = "/dev/lidar_left"
-        # self.lidar_right_port = "/dev/lidar_right"
+        self.lidar_left_port = "/dev/lidar_left"
+        self.lidar_right_port = "/dev/lidar_right"
 
-        # self.lidar_left = LidarController(port=self.lidar_left_port)
-        # self.lidar_right = LidarController(port=self.lidar_right_port)
+        self.lidar_left = LidarController(port=self.lidar_left_port)
+        self.lidar_right = LidarController(port=self.lidar_right_port)
 
-        # self.lidar_left.start()
-        # self.lidar_right.start()
+        self.lidar_left.start()
+        self.lidar_right.start()
 
-        # print(f"[InferencePage] Lidar Left Port: {self.lidar_left_port}")
-        # print(f"[InferencePage] Lidar Right Port: {self.lidar_right_port}")
+        print(f"[InferencePage] Lidar Left Port: {self.lidar_left_port}")
+        print(f"[InferencePage] Lidar Right Port: {self.lidar_right_port}")
 
     def _build_ui(self):
         self.camera_container = QWidget(self)
@@ -169,11 +169,9 @@ class InferencePage(QWidget):
     def start_yolo(self):
         try:
             self._init_configs()
-            # self.yolo_thread = YOLOThreadController(
-            #     lidar_left=self.lidar_left, lidar_right=self.lidar_right
-            # )
-
-            self.yolo_thread = YOLOThreadController()
+            self.yolo_thread = YOLOThreadController(
+                lidar_left=self.lidar_left, lidar_right=self.lidar_right
+            )
 
             if self.yolo_thread and self.yolo_thread.isRunning():
                 self.yolo_thread.stop()

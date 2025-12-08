@@ -5,7 +5,6 @@ import cv2
 from ultralytics import YOLO
 
 from configs.config_manager import ConfigManager
-from controller.lidar import LidarController
 from controller.serial import SerialController
 from utils.path import ROOT_DIR
 
@@ -14,7 +13,7 @@ class YOLOThreadController(QThread):
     frame_ready = pyqtSignal(QImage)
     detection_ready = pyqtSignal(str)
 
-    def __init__(self):
+    def __init__(self, lidar_left, lidar_right):
         super().__init__()
         self.running = False
         self.cap = None
@@ -24,20 +23,8 @@ class YOLOThreadController(QThread):
         self._init_configs()
         self._init_serial_controller()
 
-        # self.lidar_left = lidar_left
-        # self.lidar_right = lidar_right
-
-        self.lidar_left_port = "/dev/lidar_left"
-        self.lidar_right_port = "/dev/lidar_right"
-
-        self.lidar_left = LidarController(port=self.lidar_left_port)
-        self.lidar_right = LidarController(port=self.lidar_right_port)
-
-        self.lidar_left.start()
-        self.lidar_right.start()
-
-        print(f"[InferencePage] Lidar Left Port: {self.lidar_left_port}")
-        print(f"[InferencePage] Lidar Right Port: {self.lidar_right_port}")
+        self.lidar_left = lidar_left
+        self.lidar_right = lidar_right
 
         self.lidar_left.data_received.connect(self.update_left_distance)
         self.lidar_right.data_received.connect(self.update_right_distance)
