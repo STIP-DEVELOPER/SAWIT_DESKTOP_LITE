@@ -33,8 +33,11 @@ class InferencePage(QWidget):
         self.config_manager = ConfigManager()
         self.configs = self.config_manager.get_all()
 
-        self.lidar_left_port = self.configs.get("LIDAR_LEFT_PORT", "")
-        self.lidar_right_port = self.configs.get("LIDAR_RIGHT_PORT", "")
+        # self.lidar_left_port = self.configs.get("LIDAR_LEFT_PORT", "")
+        # self.lidar_right_port = self.configs.get("LIDAR_RIGHT_PORT", "")
+
+        self.lidar_left_port = "/dev/lidar_left"
+        self.lidar_right_port = "/dev/lidar_right"
 
         self.lidar_left = LidarController(port=self.lidar_left_port)
         self.lidar_right = LidarController(port=self.lidar_right_port)
