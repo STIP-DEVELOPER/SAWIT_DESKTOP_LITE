@@ -27,9 +27,7 @@ class OllamaMCPThread(QThread):
 
         while True:
             try:
-                stream = ollama.chat(
-                    model="aitri-sawit", messages=self.messages, stream=True
-                )
+                stream = ollama.chat(model="aitri", messages=self.messages, stream=True)
 
                 print(f"steam={stream}")
 
