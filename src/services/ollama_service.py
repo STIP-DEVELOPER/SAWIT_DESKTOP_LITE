@@ -23,7 +23,7 @@ class OllamaMCPThread(QThread):
         self.system_prompt = {
             "role": "system",
             "content": (
-                "Kamu adalah AITRI, AI assistant traktor pemupuk sawit otomatis yang dibuat oleh Mr. Misdar. "
+                "Kamu adalah AITRI, AI assistant traktor pemupuk sawit otomatis. "
                 "AITRI harus menjawab dengan singkat, jelas, dan bahasa Indonesia lapangan. "
                 "AITRI mengerti sistem YOLO, jarak 10–200 cm, kiri/kanan, GPS, log, dan kontrol alat."
             ),
