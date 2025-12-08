@@ -66,27 +66,28 @@ class YOLOThreadController(QThread):
         self.right_distance = data["distance_cm"]
 
     def _is_distance_valid(self, position):
-        MIN_THRESHOLD = 10  # minimum 10 cm
+        print(f"[YOLOThread] Checking distance for position: {position}")
+        # MIN_THRESHOLD = 10  # minimum 10 cm
 
-        if position == "LEFT":
-            print(f"======LEFT: {self.left_distance}cm")
-            print(f"======[YOLOThrede] : min threshold {MIN_THRESHOLD}")
-            print(f"======[YOLOThrede] : max threshold {self.lidar_threshold}")
-            return (
-                self.left_distance is not None
-                and MIN_THRESHOLD < self.left_distance < self.lidar_threshold
-            )
+        # if position == "LEFT":
+        #     print(f"======LEFT: {self.left_distance}cm")
+        #     print(f"======[YOLOThrede] : min threshold {MIN_THRESHOLD}")
+        #     print(f"======[YOLOThrede] : max threshold {self.lidar_threshold}")
+        #     return (
+        #         self.left_distance is not None
+        #         and MIN_THRESHOLD < self.left_distance < self.lidar_threshold
+        #     )
 
-        elif position == "RIGHT":
-            print(f"======LEFT: {self.left_distance}cm")
-            print(f"======[YOLOThrede] : min threshold {MIN_THRESHOLD}")
-            print(f"======[YOLOThrede] : max threshold {self.lidar_threshold}")
-            return (
-                self.right_distance is not None
-                and MIN_THRESHOLD < self.right_distance < self.lidar_threshold
-            )
+        # elif position == "RIGHT":
+        #     print(f"======LEFT: {self.left_distance}cm")
+        #     print(f"======[YOLOThrede] : min threshold {MIN_THRESHOLD}")
+        #     print(f"======[YOLOThrede] : max threshold {self.lidar_threshold}")
+        #     return (
+        #         self.right_distance is not None
+        #         and MIN_THRESHOLD < self.right_distance < self.lidar_threshold
+        #     )
 
-        return False
+        return True
 
     def get_object_position(self, frame_width, box):
         x1, y1, x2, y2 = box.xyxy[0]
