@@ -212,10 +212,10 @@ class SettingsPage(QWidget):
             usb_ports = ["No ports detected"]
 
         # Update semua dropdown port
-        self.select_port.set_value(usb_ports)
-        self.select_lidar_left.set_value(usb_ports)
-        self.select_lidar_right.set_value(usb_ports)
-        self.select_gps_port.set_value(usb_ports)
+        self.select_port.set_items(usb_ports)
+        self.select_lidar_left.set_items(usb_ports)
+        self.select_lidar_right.set_items(usb_ports)
+        self.select_gps_port.set_items(usb_ports)
 
         QMessageBox.information(self, "Info", "Daftar port berhasil diperbarui.")
 

@@ -116,3 +116,7 @@ class Dropdown(QWidget):
         index = self.combo.findText(value)
         if index >= 0:
             self.combo.setCurrentIndex(index)
+
+    def set_items(self, items: list):
+        self.combo.clear()
+        self.combo.addItems(items)
