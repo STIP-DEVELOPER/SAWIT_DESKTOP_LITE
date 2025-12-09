@@ -1,131 +1,5 @@
 [
     {
-        "timestamp": "2025-12-08T23:56:48",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:56:48",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:56:58",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:07",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:07",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:14",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:17",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:17",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:17",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:22",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:40",
-        "level": "INFO",
-        "source": "UI_SETTINGS",
-        "message": "Settings saved {'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'SERIAL_PORT': '/dev/cu.usbserial-14210', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': '/dev/cu.usbserial-0001', 'LIDAR_RIGHT_PORT': '/dev/cu.usbserial-2', 'LIDAR_THRESHOLD': 100, 'GPS_PORT': '', 'GPS_LOG_INTERVAL': '30 menit', 'GPS_LOG_INTERVAL_MINUTES': 30}"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:43",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:44",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:44",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:57:44",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:58:01",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-08T23:58:02",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
-        "timestamp": "2025-12-08T23:58:02",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:58:02",
-        "level": "INFO",
-        "source": "LIDAR_CONTROLLER",
-        "message": "[Lidar] Serial error: device reports readiness to read but returned no data (device disconnected or multiple access on port?)"
-    },
-    {
-        "timestamp": "2025-12-08T23:58:10",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference stopped"
-    },
-    {
-        "timestamp": "2025-12-08T23:58:12",
-        "level": "INFO",
-        "source": "UI_HOME",
-        "message": "Inference started"
-    },
-    {
         "timestamp": "2025-12-08T23:58:12",
         "level": "INFO",
         "source": "LIDAR_CONTROLLER",
@@ -298,5 +172,131 @@
         "level": "INFO",
         "source": "LIDAR_CONTROLLER",
         "message": "[Lidar] Serial error: read failed: [Errno 6] Device not configured"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:26",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-0001: [Errno 2] No such file or directory: '/dev/cu.usbserial-0001'"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:26",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-2: [Errno 2] No such file or directory: '/dev/cu.usbserial-2'"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:45",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:45",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port /dev/cu.usbserial-14210: [Errno 2] No such file or directory: '/dev/cu.usbserial-14210'"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:56",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:57",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-09T15:39:57",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port /dev/cu.usbserial-14210: [Errno 2] No such file or directory: '/dev/cu.usbserial-14210'"
+    },
+    {
+        "timestamp": "2025-12-09T15:40:08",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-09T21:38:36",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-0001: [Errno 2] No such file or directory: '/dev/cu.usbserial-0001'"
+    },
+    {
+        "timestamp": "2025-12-09T21:38:36",
+        "level": "INFO",
+        "source": "LIDAR_CONTROLLER",
+        "message": "[Lidar] Serial error: [Errno 2] could not open port /dev/cu.usbserial-2: [Errno 2] No such file or directory: '/dev/cu.usbserial-2'"
+    },
+    {
+        "timestamp": "2025-12-09T21:38:59",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-09T21:38:59",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port /dev/cu.usbserial-14210: [Errno 2] No such file or directory: '/dev/cu.usbserial-14210'"
+    },
+    {
+        "timestamp": "2025-12-09T21:39:50",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:01",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'CAMERA_INDEX': 1, 'YOLO_MODEL': 'general_ncnn_model', 'SERIAL_PORT': 'None', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 100, 'GPS_PORT': '', 'GPS_LOG_INTERVAL': '30 menit', 'GPS_LOG_INTERVAL_MINUTES': 30}"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:05",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:05",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:21",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:34",
+        "level": "INFO",
+        "source": "UI_SETTINGS",
+        "message": "Settings saved {'CAMERA_INDEX': 0, 'YOLO_MODEL': 'general_ncnn_model', 'SERIAL_PORT': 'None', 'CONFIDENCE': 0.5, 'BAUDRATE': 9600, 'FPS': 5, 'LIDAR_LEFT_PORT': 'None', 'LIDAR_RIGHT_PORT': 'None', 'LIDAR_THRESHOLD': 100, 'GPS_PORT': '', 'GPS_LOG_INTERVAL': '30 menit', 'GPS_LOG_INTERVAL_MINUTES': 30}"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:39",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference started"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:39",
+        "level": "ERROR",
+        "source": "SERIAL_CONTROLLER",
+        "message": "[Errno 2] could not open port None: [Errno 2] No such file or directory: 'None'"
+    },
+    {
+        "timestamp": "2025-12-09T21:40:56",
+        "level": "INFO",
+        "source": "UI_HOME",
+        "message": "Inference stopped"
     }
 ]
